@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_main"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <!-- Recommended book-->
+                <LinearLayout style="@style/book_box_main_box">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/category_page_rec"
+                        android:background="@null"
+                        android:onClick="RecBookOpenCategory"
+                        />
+
+                    <!-- books panel-->
+                    <LinearLayout style="@style/book_box_books_panel" android:id="@+id/rec_book_layer">
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/rec1">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/rec1img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/rec1name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/rec1writer"/>
+                            <TextView android:id="@+id/rec1id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/rec2">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/rec2img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/rec2name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/rec2writer"/>
+                            <TextView android:id="@+id/rec2id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/rec3" android:layout_marginLeft="0dp">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/rec3img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/rec3name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/rec3writer"/>
+                            <TextView android:id="@+id/rec3id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Holy Book-->
+                <LinearLayout style="@style/book_box_main_box">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/category_page_holy"
+                        android:background="@null"
+                        android:onClick="holyBookOpenCategory"/>
+
+                    <!-- books panel-->
+                    <LinearLayout style="@style/book_box_books_panel" android:id="@+id/holy_book_layer">
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/holy1" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/holy1img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/holy1name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/holy1writer"/>
+                            <TextView android:id="@+id/holy1id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/holy2" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/holy2img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/holy2name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/holy2writer"/>
+                            <TextView android:id="@+id/holy2id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/holy3" android:layout_marginLeft="0dp">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/holy3img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/holy3name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/holy3writer"/>
+                            <TextView android:id="@+id/holy3id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Children Book-->
+                <LinearLayout style="@style/book_box_main_box">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/category_page_kids"
+                        android:background="@null"
+                        android:onClick="kidsBookOpenCategory"/>
+
+                    <!-- books panel-->
+                    <LinearLayout style="@style/book_box_books_panel">
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/kids1" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/kids1img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/kids1name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/kids1writer"/>
+                            <TextView android:id="@+id/kids1id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/kids2" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/kids2img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/kids2name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/kids2writer"/>
+                            <TextView android:id="@+id/kids2id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/kids3" android:layout_marginLeft="0dp">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/kids3img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/kids3name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/kids3writer"/>
+                            <TextView android:id="@+id/kids3id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- History Book-->
+                <LinearLayout style="@style/book_box_main_box">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/category_page_history"
+                            android:background="@null"
+                            android:onClick="historyBookOpenCategory"/>
+
+                        <!-- books panel-->
+                        <LinearLayout style="@style/book_box_books_panel">
+                            <LinearLayout style="@style/book_box_bookItem" android:id="@+id/history1" >
+                                <ImageButton style="@style/book_box_bookImg" android:id="@+id/history1img"/>
+                                <TextView style="@style/book_box_book_name" android:id="@+id/history1name"/>
+                                <TextView style="@style/book_box_writer_name" android:id="@+id/history1writer"/>
+                                <TextView android:id="@+id/history1id" android:layout_width="0dp" android:layout_height="0dp" />
+                            </LinearLayout>
+                            <LinearLayout style="@style/book_box_bookItem" android:id="@+id/history2" >
+                                <ImageButton style="@style/book_box_bookImg" android:id="@+id/history2img"/>
+                                <TextView style="@style/book_box_book_name" android:id="@+id/history2name"/>
+                                <TextView style="@style/book_box_writer_name" android:id="@+id/history2writer"/>
+                                <TextView android:id="@+id/history2id" android:layout_width="0dp" android:layout_height="0dp" />
+                            </LinearLayout>
+                            <LinearLayout style="@style/book_box_bookItem" android:id="@+id/history3" android:layout_marginLeft="0dp">
+                                <ImageButton style="@style/book_box_bookImg" android:id="@+id/history3img"/>
+                                <TextView style="@style/book_box_book_name" android:id="@+id/history3name"/>
+                                <TextView style="@style/book_box_writer_name" android:id="@+id/history3writer"/>
+                                <TextView android:id="@+id/history3id" android:layout_width="0dp" android:layout_height="0dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                <!-- Pro Book-->
+                <LinearLayout style="@style/book_box_main_box">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/category_page_pro"
+                        android:background="@null"
+                        android:onClick="proBookOpenCategory"/>
+
+                    <!-- books panel-->
+                    <LinearLayout style="@style/book_box_books_panel">
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/pro1" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/pro1img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/pro1name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/pro1writer"/>
+                            <TextView android:id="@+id/pro1id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/pro2" >
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/pro2img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/pro2name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/pro2writer"/>
+                            <TextView android:id="@+id/pro2id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/book_box_bookItem" android:id="@+id/pro3" android:layout_marginLeft="0dp">
+                            <ImageButton style="@style/book_box_bookImg" android:id="@+id/pro3img"/>
+                            <TextView style="@style/book_box_book_name" android:id="@+id/pro3name"/>
+                            <TextView style="@style/book_box_writer_name" android:id="@+id/pro3writer"/>
+                            <TextView android:id="@+id/pro3id" android:layout_width="0dp" android:layout_height="0dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

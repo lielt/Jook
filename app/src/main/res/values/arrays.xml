@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="payway_array">
+        <item> מוזומן </item>
+        <item> אשראי </item>
+        <item> צק </item>
+        <item>העברה בנקאית </item>
+    </string-array>
+
+    <string-array name="dalivery_array">
+        <item> איסוף עצמי </item>
+        <item> דואר שליחים </item>
+        <item> UPS </item>
+        <item>דואר רשום </item>
+    </string-array>
+    <string-array name="book_category">
+        <item> קודש  </item>
+        <item> ילדים  </item>
+        <item> היסטוריה </item>
+        <item> ספרות מקצועית </item>
+    </string-array>
+</resources>

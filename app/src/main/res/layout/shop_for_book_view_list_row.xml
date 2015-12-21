@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_view_bg_selector"
+    android:orientation="horizontal"
+    android:layoutDirection="rtl"
+    android:padding="5dip" >
+
+        <LinearLayout
+            android:id="@+id/ShopText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_marginRight="5dp">
+            <!-- Name Of Store-->
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="המדף היהודי"
+                android:textColor="#040404"
+                android:typeface="sans"
+                android:textSize="15dip"
+                android:textStyle="bold"
+                />
+
+            <!-- Shiping Method Name -->
+            <TextView
+                android:id="@+id/shop_shiping"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:textColor="#343434"
+                android:textSize="10dip"
+                android:layout_marginTop="1dip"
+                android:text="דואר רשום"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/StarForShop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star_3"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"/>
+
+	<!-- Rightend Duration -->
+    <TextView
+        android:id="@+id/shop_price_for_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:text="80"
+        android:textSize="20dip"
+        android:textColor="#063284"
+        android:textStyle="bold"
+        />
+
+    <!-- Rightend Arrow -->
+    <ImageView android:layout_width="40dp"
+        android:layout_height="18dip"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/new_shkel" />
+      
+     <!-- Rightend Arrow -->    
+     <ImageView android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+     	android:src="@drawable/arrow"
+     	android:layout_alignParentLeft="true"
+     	android:layout_marginTop="10dp"/>
+
+</LinearLayout>

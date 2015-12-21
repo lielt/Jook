@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="book_box_book_name" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#252864</item>
+        <item name="android:text">book name</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="book_box_writer_name" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">book writer</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="book_box_bookItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/custom_item_box_border</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:maxWidth">10px</item>
+    </style>
+    <style name="book_box_bookImg">
+        <item name="android:layout_width">100px</item>
+        <item name="android:layout_height">100px</item>
+        <item name="android:src">@drawable/no_book</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:onClick">ClickOnBook</item>
+    </style>
+
+    <style name="book_box_main_box">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/box</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">20dp</item>
+
+    </style>
+
+</resources>
