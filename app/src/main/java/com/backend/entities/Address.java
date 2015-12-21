@@ -11,7 +11,6 @@ public class Address
    private String Street;
    private String Num;
    private String City;
-    private String no;
 
 
 
