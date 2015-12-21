@@ -15,7 +15,7 @@
         android:visibility="visible"
         >
 
-        <EditText android:id="@+id/get_customer_recomended"
+        <EditText android:id="@+id/get_buisness_name"
             android:layout_weight="1"
             android:inputType="text"
             android:layout_width="100dp"
@@ -121,6 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
+            android:onClick="CreateSupplier"
             />
 
 

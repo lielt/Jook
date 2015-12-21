@@ -41,7 +41,7 @@ public final class SystemFunc {
         return m.matches();
     }
 
-    public Ship GetShip(String s)
+    public static  Ship GetShip(String s)
     {
         switch(s)
         {
@@ -59,7 +59,7 @@ public final class SystemFunc {
         }
     }
 
-    public static final PayWay GetPayWay(String s)
+    public static PayWay GetPayWay(String s)
     {
         switch(s)
         {
