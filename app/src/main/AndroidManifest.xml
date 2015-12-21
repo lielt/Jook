@@ -51,6 +51,8 @@
         </activity>
         <activity android:name=".jook.AddBook" >
         </activity>
+        <activity android:name=".jook.Add_Admin" >
+        </activity>
     </application>
 
 </manifest>
