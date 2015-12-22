@@ -33,8 +33,8 @@
 
                     <ImageView
                         android:id="@+id/Book_image"
-                        android:layout_width="100dip"
-                        android:layout_height="100dip"
+                        android:layout_width="80dip"
+                        android:layout_height="80dip"
                         android:src="@drawable/no_book"/>
 
                 </LinearLayout>
@@ -106,7 +106,7 @@
                         android:text="פרטי ספק"
                         android:textColor="#040404"
                         android:typeface="sans"
-                        android:textSize="28dip"
+                        android:textSize="24dip"
                         android:textStyle="bold"
                         android:layout_gravity="right"/>
 
@@ -128,7 +128,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
-                            android:text="מ.ע"
+                            android:text="ע.מ"
                             android:typeface="sans"
                             android:textSize="20dip"
                             android:textStyle="bold"
@@ -269,7 +269,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="5dp">
 
                     <!-- Header -->
                     <TextView
@@ -278,7 +278,7 @@
                         android:text="פרטי הזמנה"
                         android:textColor="#040404"
                         android:typeface="sans"
-                        android:textSize="28dip"
+                        android:textSize="24dip"
                         android:textStyle="bold"
                         android:layout_gravity="right"/>
 
@@ -355,7 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
-                            android:text="ח''ש"
+                            android:text="ש''ח"
                             android:typeface="sans"
                             android:textSize="18dip"
                             android:textStyle="bold"
@@ -377,16 +377,18 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="הקטן כמות"
+                    android:text="הגדל כמות"
                     android:layout_margin="4dp"
-                    android:background="#f88e47" />
+                    android:background="#94fa51"
+                    android:onClick="addAmount"/>
                 <Button
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="הגדל כמות"
+                    android:text="הקטן כמות"
                     android:layout_margin="4dp"
-                    android:background="#94fa51" />
+                    android:background="#f88e47"
+                    android:onClick="MinousAmount"/>
             </LinearLayout>
 
             <Button

@@ -79,9 +79,6 @@ public class Show_Recomends_for_book extends AppCompatActivity {
 
                 listView.setAdapter(adapter);
             }
-            else
-            {
-            }
 
         }
         catch (Exception ex)

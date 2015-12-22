@@ -3,6 +3,8 @@ package com.jook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,11 +14,14 @@ import com.backend.entities.Book;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
+import com.jook.DownloadImageFromNetTools.ImageLoader;
 
 public class OrderPage extends AppCompatActivity {
 
     public static String BOOK_ID = "bid";
     public static String SUP_ID = "sid";
+
+    public ImageLoader imageLoader;
 
     Book myBook;
     Supplier mySupplier;
@@ -24,6 +29,9 @@ public class OrderPage extends AppCompatActivity {
     Order myOrder;
     Intent myIntent;
 
+
+    TextView Amount;
+    TextView Price;
 
 
     @Override
@@ -36,6 +44,7 @@ public class OrderPage extends AppCompatActivity {
 
             String bookID = myIntent.getStringExtra(BOOK_ID);
             String SupplierID = myIntent.getStringExtra(SUP_ID);
+            imageLoader = new ImageLoader(this.getApplicationContext());
 
             myBook = AndroidSuperApp.BL.GetBooksByParameters("id",bookID).get(0);
             mySupplier = AndroidSuperApp.BL.GetSupplierByID(SupplierID);
@@ -53,9 +62,11 @@ public class OrderPage extends AppCompatActivity {
             TextView BookTitle = (TextView)findViewById(R.id.BookTitle);
             TextView BookWirter = (TextView)findViewById(R.id.BookWirter);
             TextView BookPublisher = (TextView)findViewById(R.id.BookPublisher);
+            ImageView Image = (ImageView) this.findViewById(R.id.Book_image);
 
-            TextView Amount = (TextView)findViewById(R.id.Amount);
-            TextView Price = (TextView)findViewById(R.id.Price);
+
+            Amount = (TextView)findViewById(R.id.Amount);
+            Price = (TextView)findViewById(R.id.Price);
 
             SupName.setText(mySupplier.getBusinessName());
             SupID.setText(mySupplier.getID());
@@ -66,14 +77,44 @@ public class OrderPage extends AppCompatActivity {
             BookTitle.setText(myBook.getBookName());
             BookWirter.setText(myBook.getWriterAsString());
             BookPublisher.setText(myBook.getPublisher());
+            imageLoader.DisplayImage(myBook.getURL(), Image);
 
-            Amount.setText("1");
+            Amount.setText(String.valueOf(myOrder.getAmount()));
             Price.setText(String.valueOf(mySupplierBook.getPrice()));
 
         }
         catch (Exception ex)
         {
             Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void addAmount(View view)
+    {
+
+        if(myOrder.getAmount() < mySupplierBook.getAmount())
+        {
+            myOrder.setAmount(myOrder.getAmount()+1);
+            Amount.setText(String.valueOf(myOrder.getAmount()));
+            Price.setText(String.valueOf(myOrder.getAmount() * mySupplierBook.getPrice()));
+        }
+        else
+            Toast.makeText(OrderPage.this, "הגעת לכמות המקסימאלית עבור ספק זה", Toast.LENGTH_SHORT).show();
+
+
+    }
+    public void MinousAmount(View view)
+    {
+        if (myOrder.getAmount() > 1)
+        {
+            myOrder.setAmount(myOrder.getAmount()-1);
+            Amount.setText(String.valueOf(myOrder.getAmount()));
+            Price.setText(String.valueOf(myOrder.getAmount()*mySupplierBook.getPrice()));
+        }
+        else
+        {
+            Toast.makeText(OrderPage.this, "לא ניתן להוריד כמות מתחת ל1", Toast.LENGTH_SHORT).show();
         }
 
     }
