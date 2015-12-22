@@ -33,6 +33,7 @@ public interface Backend
     public void removeBookFromSupplier (Supplier_Book sbook)throws Exception;
     public void updateBookOnSupplier (Supplier_Book sbook) throws Exception;
 
+
     public void AddAdmin(Admin admin)throws Exception;
     public void UpdateAdmin (Admin admin)throws Exception;
     public void DeleteAdmin (Admin admin)throws Exception;

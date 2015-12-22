@@ -19,7 +19,6 @@ import static com.backend.entities.SystemFunc.GetShip;
 public class Add_Supplier extends AppCompatActivity {
 
     Intent MyIntent;
-
     String ID;
     String PrivateNames;
     String FamilyNames;

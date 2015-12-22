@@ -1,5 +1,6 @@
 package com.jook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,11 +26,13 @@ public class ShowBookManager extends AppCompatActivity {
 
     public ImageLoader imageLoader;
     Book CurrBook;
+    Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_book_manager);
+        ctx = this;
 
 
 
@@ -85,6 +88,17 @@ public class ShowBookManager extends AppCompatActivity {
                 SupDataAdapter adapter = new SupDataAdapter(this,shopLlist);
 
                 listView.setAdapter(adapter);
+
+
+                listView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Intent intent1 = new Intent(ctx,OrderPage.class);
+
+
+                    }
+                });
             }
             else
             {

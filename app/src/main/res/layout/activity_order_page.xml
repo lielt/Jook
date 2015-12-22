@@ -1,9 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context="com.jook.OrderPage">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.jook.OrderPage"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutDirection="rtl">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl">
+
+                <LinearLayout android:id="@+id/BookThumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dip"
+                    android:layoutDirection="rtl">
+
+                    <ImageView
+                        android:id="@+id/Book_image"
+                        android:layout_width="100dip"
+                        android:layout_height="100dip"
+                        android:src="@drawable/no_book"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/BookDiscription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/BookThumbnail"
+                    android:orientation="vertical">
+
+                    <!-- Title Of Book-->
+                    <TextView
+                        android:id="@+id/BookTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="אורות הקודש"
+                        android:textColor="#040404"
+                        android:typeface="sans"
+                        android:textSize="28dip"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"/>
+
+                    <!-- Title Of Book-->
+                    <TextView
+                        android:id="@+id/BookWirter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="אברהם יצחק הכהן קוק"
+                        android:typeface="sans"
+                        android:textSize="20dip"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"/>
+
+                    <!-- Title Of Book-->
+                    <TextView
+                        android:id="@+id/BookPublisher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="מוסד הרב קוק"
+                        android:typeface="sans"
+                        android:textSize="15dip"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_marginTop="10dp">
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/BookThumbnail"
+                    android:orientation="vertical">
+
+                    <!-- Header -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="פרטי ספק"
+                        android:textColor="#040404"
+                        android:typeface="sans"
+                        android:textSize="28dip"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/SupName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="המדף היהודי"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="מ.ע"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/SupID"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="302724208"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="שיטת משלוח"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/SupShip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="דואר שליחים"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="תשלום באמצעות"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/SupPay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="אשראי"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="כתובת"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/SupAdrr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="סוכו 203 ירוחם"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_marginTop="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+
+                    <!-- Header -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="פרטי הזמנה"
+                        android:textColor="#040404"
+                        android:typeface="sans"
+                        android:textSize="28dip"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="כמות"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/Amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="1"
+                            android:typeface="sans"
+                            android:textSize="20dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="מחיר"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:id="@+id/Price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="100"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="ח''ש"
+                            android:typeface="sans"
+                            android:textSize="18dip"
+                            android:textStyle="bold"
+                            android:layout_gravity="right"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="הקטן כמות"
+                    android:layout_margin="4dp"
+                    android:background="#f88e47" />
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="הגדל כמות"
+                    android:layout_margin="4dp"
+                    android:background="#94fa51" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="הוסף לעגלה"
+                android:layout_margin="4dp"
+                android:background="#3861f7" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>
