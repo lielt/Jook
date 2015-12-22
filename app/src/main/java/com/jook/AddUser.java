@@ -44,22 +44,35 @@ public class AddUser extends AppCompatActivity {
     public void RegAsCusButton(View view)
     {
         Intent intent = new Intent(this,Add_Customer.class);
-        addDataAsExtra(intent);
-        startActivity(intent);
+        try {
+            addDataAsExtra(intent);
+            startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
     public  void RegAsSupButton (View view)
     {
         Intent intent =new Intent(this,Add_Supplier.class);
-        addDataAsExtra(intent);
-        startActivity(intent);
+        try {
+            addDataAsExtra(intent);
+            startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
 
     }
 
 
 
-    private void addDataAsExtra(Intent intent)
+    private void addDataAsExtra(Intent intent) throws Exception
     {
         try {
             String IDs = ((EditText) findViewById(R.id.get_user_id)).getText().toString();
@@ -85,7 +98,7 @@ public class AddUser extends AppCompatActivity {
         }
         catch(Exception ex)
         {
-            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+            throw ex;
         };
 
     }
@@ -95,7 +108,13 @@ public class AddUser extends AppCompatActivity {
 
     public void RegAsAdmin(View view) {
         Intent intent =new Intent(this,Add_Admin.class);
-        addDataAsExtra(intent);
-        startActivity(intent);
+        try {
+            addDataAsExtra(intent);
+            startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 }
