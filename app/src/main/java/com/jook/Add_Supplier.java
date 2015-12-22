@@ -18,22 +18,34 @@ import static com.backend.entities.SystemFunc.GetShip;
 
 public class Add_Supplier extends AppCompatActivity {
 
-    Intent MyIntent=getIntent();
+    Intent MyIntent;
 
-    String ID = MyIntent.getStringExtra(ConstValue.ID);
-    String PrivateNames= MyIntent.getStringExtra(ConstValue.PrivateName);
-    String FamilyNames= MyIntent.getStringExtra(ConstValue.FamilyName);
-    String City= MyIntent.getStringExtra(ConstValue.City);
-    String Street= MyIntent.getStringExtra(ConstValue.Street);
-    String Building= MyIntent.getStringExtra(ConstValue.Building);
-    String Email= MyIntent.getStringExtra(ConstValue.Email);
-    String Phone= MyIntent.getStringExtra(ConstValue.Phone);
-    String CellPhone= MyIntent.getStringExtra(ConstValue.CellPhone);
+    String ID;
+    String PrivateNames;
+    String FamilyNames;
+    String City;
+    String Street;
+    String Building;
+    String Email;
+    String Phone;
+    String CellPhone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__supplier);
+
+        MyIntent=getIntent();
+        ID =MyIntent.getStringExtra(ConstValue.ID);
+        PrivateNames=MyIntent.getStringExtra(ConstValue.PrivateName);
+        FamilyNames=MyIntent.getStringExtra(ConstValue.FamilyName);
+        City=MyIntent.getStringExtra(ConstValue.City);
+        Street=MyIntent.getStringExtra(ConstValue.Street);
+        Building=MyIntent.getStringExtra(ConstValue.Building);
+        Email=MyIntent.getStringExtra(ConstValue.Email);
+        Phone=MyIntent.getStringExtra(ConstValue.Phone);
+        CellPhone=MyIntent.getStringExtra(ConstValue.CellPhone);
     }
 
     public void CreateSupplier(View view) {
