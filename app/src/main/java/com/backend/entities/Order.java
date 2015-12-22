@@ -8,6 +8,14 @@ public class Order
     private String BookId;
     private int Amount;
 
+    public Order(String id, String cartId, String supplierId, String bookId, int amount) {
+        Id = id;
+        CartId = cartId;
+        SupplierId = supplierId;
+        BookId = bookId;
+        Amount = amount;
+    }
+
     public String getId() {
         return Id;
     }

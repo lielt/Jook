@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class ShowBookManager extends AppCompatActivity {
 
 
         try {
-            Intent intent = getIntent();
+            final Intent intent = getIntent();
             imageLoader = new ImageLoader(this.getApplicationContext());
 
             String BookId = intent.getStringExtra(KEY_BOOK_ID);
@@ -56,7 +57,7 @@ public class ShowBookManager extends AppCompatActivity {
 
             ////////////////////////////////////////////////////////////////
 
-            ArrayList<HashMap<String, String>> shopLlist = new ArrayList<HashMap<String, String>>();
+            final ArrayList<HashMap<String, String>> shopLlist = new ArrayList<HashMap<String, String>>();
 
             ArrayList<Supplier_Book> spList = AndroidSuperApp.BL.GetSupplierByBook(CurrBook.getID());
             TextView getBookText = (TextView)this.findViewById(R.id.getBookInSupText);
@@ -74,6 +75,7 @@ public class ShowBookManager extends AppCompatActivity {
                     Supplier s = AndroidSuperApp.BL.GetSupplierByID(sb.getSupplierID());
 
                     // adding each child node to HashMap key => value
+                    map.put(SupDataAdapter.KEY_SHOP_ID, s.getID());
                     map.put(SupDataAdapter.KEY_SHOP_NAME, s.getBusinessName());
                     map.put(SupDataAdapter.KEY_SHOP_PRICE, String.valueOf(sb.getPrice()));
                     map.put(SupDataAdapter.KEY_SHOP_SHIP, s.getShippingMethodAsString());
@@ -84,20 +86,24 @@ public class ShowBookManager extends AppCompatActivity {
                     shopLlist.add(map);
                 }
 
-                ListView listView = (ListView)this.findViewById(R.id.sup_for_book);
+                final ListView listView = (ListView)this.findViewById(R.id.sup_for_book);
                 SupDataAdapter adapter = new SupDataAdapter(this,shopLlist);
 
                 listView.setAdapter(adapter);
 
 
-                listView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
+                listView.setOnItemClickListener(
+                    new AdapterView.OnItemClickListener()
                     {
-                        Intent intent1 = new Intent(ctx,OrderPage.class);
+                        @Override
+                        public void onItemClick (AdapterView <?> parent, View view,int position,long id)
+                        {
+                         Intent intent = new Intent(getBaseContext(), OrderPage.class);
+                         intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
+                         intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
+                         startActivity(intent);
+                        }
 
-
-                    }
                 });
             }
             else

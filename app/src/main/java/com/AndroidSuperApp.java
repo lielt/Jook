@@ -15,6 +15,7 @@ import com.backend.entities.User;
 import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
+import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
 
@@ -40,10 +41,13 @@ public class AndroidSuperApp extends Application {
         try
         {
             buildDefultDataBase();
-            CurrAppCart = null;
-            CurrAppUser = null;
-            Admin a = new Admin("305062988","Hana","Tzur","036959981","0527560167","h@g.com","Brazil","100","Jerusalem","a",false, Level.Administrator);
-            BL.AddAdmin(a);
+            CurrAppCart = new Cart();
+            CurrAppCart.setCustomerID("");
+            CurrAppCart.setID("");
+
+            CurrAppUser = new User("0","guest","guset","030001111","0521231234","test@gmail.com","null","null","null","",false);
+            CurrAppUser.setPrivilege(Privilege.Guest);
+
         }
         catch (Exception ex)
         {
@@ -128,6 +132,9 @@ public class AndroidSuperApp extends Application {
         Recommendation r1 = new Recommendation(s1.getID(),b1.getID(),3,"אחלה של ספר");
 
         AndroidSuperApp.BL.AddRecommendation(r1);
+
+        Admin a = new Admin("305062988","Hana","Tzur","036959981","0527560167","h@g.com","Brazil","100","Jerusalem","a",false, Level.Administrator);
+        BL.AddAdmin(a);
 
     }
 

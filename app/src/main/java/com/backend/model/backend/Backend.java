@@ -32,7 +32,7 @@ public interface Backend
     public void addBookToSupplier (Supplier_Book sbook)throws Exception;
     public void removeBookFromSupplier (Supplier_Book sbook)throws Exception;
     public void updateBookOnSupplier (Supplier_Book sbook) throws Exception;
-
+    public Supplier_Book GetSupplierBook(String book, String supplier);
 
     public void AddAdmin(Admin admin)throws Exception;
     public void UpdateAdmin (Admin admin)throws Exception;

@@ -51,4 +51,9 @@ public class Address
         else throw new Exception(getContex().getString(R.string.CityCharErr));
     }
 
+    public String getFullAddressAsString()
+    {
+        return (getStreet() + " " + getNum() + " " + getCity());
+    }
+
 }

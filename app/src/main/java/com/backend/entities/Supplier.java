@@ -29,7 +29,7 @@ public class Supplier extends User
 
     public Supplier(Supplier source) throws Exception
     {
-        this(source.getID(),source.getContactName().getFirstName(),source.getContactName().getLastName(),source.getContactInfo().getPhone(),source.getContactInfo().getCellPhone(),source.getContactInfo().getEmail(),source.getContactInfo().getAddress().getStreet(),source.getContactInfo().getAddress().getNum(),source.getContactInfo().getAddress().getCity(),source.getApplicationPassword(),source.isBlock(),source.getBusinessName(),source.getShippingMethod(), source.getPaymentMethod(),source.getRate());
+        this(source.getID(), source.getContactName().getFirstName(), source.getContactName().getLastName(), source.getContactInfo().getPhone(), source.getContactInfo().getCellPhone(), source.getContactInfo().getEmail(), source.getContactInfo().getAddress().getStreet(), source.getContactInfo().getAddress().getNum(), source.getContactInfo().getAddress().getCity(), source.getApplicationPassword(), source.isBlock(), source.getBusinessName(), source.getShippingMethod(), source.getPaymentMethod(), source.getRate());
     }
 
 
@@ -61,6 +61,23 @@ public class Supplier extends User
                 return getContex().getString(R.string.UPS);
             case Pickup:
                 return getContex().getString(R.string.SelfPickUP);
+        }
+
+        return "";
+    }
+
+    public String getPayMethodAsString()
+    {
+        switch (this.getPaymentMethod())
+        {
+            case Cash: return "מזומן";
+
+            case Check: return "צק";
+
+            case Credit: return "אשראי";
+
+            case BankTransfer: return "העברה בנקאית";
+                
         }
 
         return "";

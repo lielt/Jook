@@ -199,6 +199,11 @@ public class ListDS implements Backend, Serializable
         return null;
     }
 
+    @Override
+    public Supplier_Book GetSupplierBook(String book, String supplier)
+    {
+        return SearchSupplier_BookById(new Supplier_Book(supplier,book));
+    }
 
     @Override
     public void AddCustomer(Customer customer) throws Exception{

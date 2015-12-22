@@ -25,6 +25,9 @@ public class SupDataAdapter extends BaseAdapter
     public static final String KEY_SHOP_SHIP = "shop_shiping";
     public static final String KEY_SHOP_STAR = "StarForShop";
     public static final String KEY_SHOP_PRICE = "shop_price_for_book";
+    public static final String KEY_SHOP_ID = "shop_id";
+
+
 
 
     private Activity activity;
