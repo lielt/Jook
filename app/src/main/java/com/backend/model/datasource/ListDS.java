@@ -299,7 +299,7 @@ public class ListDS implements Backend, Serializable
         Admin a = FindAdminByID(admin.getID());
 
         if (a == null)
-            AdminList.add(a);
+            AdminList.add(admin);
         else
             throw new Exception(getContex().getResources().getString(R.string.AdminAlreadyExistErr));
 

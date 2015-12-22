@@ -4,9 +4,6 @@ import com.R;
 
 import static com.AndroidSuperApp.getContex;
 
-/**
- * Created by Yosi Carmeli on 12/11/2015.
- */
 public class Supplier_Book
 {
     private String SupplierID;
