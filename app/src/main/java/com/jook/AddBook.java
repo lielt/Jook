@@ -10,7 +10,15 @@ import android.widget.Switch;
 
 import com.AndroidSuperApp;
 import com.R;
-import com.backend.enums.Privilege;
+import com.backend.entities.Book;
+import com.backend.entities.Name;
+import com.backend.entities.Supplier_Book;
+import com.backend.enums.*;
+
+import static com.backend.entities.SystemFunc.GetCategory;
+import static com.backend.entities.SystemFunc.tryParseFloat;
+import static com.backend.entities.SystemFunc.tryParseInt;
+
 
 public class AddBook extends AppCompatActivity {
 
@@ -32,17 +40,37 @@ public class AddBook extends AppCompatActivity {
 
     public void CreateBook(View view) {
         String Name=(((EditText)findViewById(R.id.get_book_name)).getText()).toString();
-        String Writer= (((EditText)findViewById(R.id.get_writer)).getText()).toString();
+        String WriterPname= (((EditText)findViewById(R.id.get_writer_private_name)).getText()).toString();
+        String WriterFname= (((EditText)findViewById(R.id.get_writer_family_name)).getText()).toString();
         String Publisher= (((EditText)findViewById(R.id.get_publisher)).getText()).toString();
         String PublishYear= (((EditText)findViewById(R.id.get_publish_year)).getText()).toString();
-        String Category= ((Spinner)findViewById(R.id.get_book_category)).getSelectedItem().toString();
-        boolean ThickCover=((Switch)findViewById(R.id.get_binding)).isChecked();
-        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier))
-        {
-            String Price= (((EditText)findViewById(R.id.get_book_price)).getText()).toString();
-            String Amount= (((EditText)findViewById(R.id.get_book_amount)).getText()).toString();
+        int pYear=0;
+        if (tryParseInt(PublishYear)) {
+            pYear = Integer.parseInt(PublishYear);
         }
+        String Category= ((Spinner)findViewById(R.id.get_book_category)).getSelectedItem().toString();
+        Category category=GetCategory(Category);
+        boolean ThickCover=((Switch)findViewById(R.id.get_binding)).isChecked();
+        String Url=(((EditText)findViewById(R.id.get_picture_url)).getText()).toString();
+        try {
+            Book newbook = new Book("1", Name, new Name(WriterPname, WriterFname),Publisher,ThickCover,pYear,category,Url );
+            AndroidSuperApp.BL.AddBook(newbook);
+            if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier)) {
+                String Price = (((EditText) findViewById(R.id.get_book_price)).getText()).toString();
+                float price=0;
+                if (tryParseFloat(Price)) {
+                    price = Float.parseFloat(Price);
+                }
+                String Amount = (((EditText) findViewById(R.id.get_book_amount)).getText()).toString();
+                int amount=0;
+                if (tryParseInt(Amount)) {
+                    amount = Integer.parseInt(Amount);
+                }
+                Supplier_Book sb=new Supplier_Book(AndroidSuperApp.CurrAppUser.getID(),newbook.getID(),amount,price);
+                AndroidSuperApp.BL.addBookToSupplier(sb);
 
+            }
 
+        }catch (Exception e){}
     }
 }

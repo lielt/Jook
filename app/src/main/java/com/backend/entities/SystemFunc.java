@@ -1,5 +1,6 @@
 package com.backend.entities;
 
+import com.backend.enums.Category;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
 
@@ -13,6 +14,15 @@ public final class SystemFunc {
     public static boolean tryParseInt(String value) {
         try {
             Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean tryParseFloat(String value) {
+        try {
+            Float.parseFloat(value);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -71,6 +81,24 @@ public final class SystemFunc {
                 return PayWay.Check;
             case "אשראי":
                 return PayWay.Credit;
+            default:
+                return null;
+
+        }
+    }
+
+    public static Category GetCategory(String s)
+    {
+        switch(s)
+        {
+            case "ילדים":
+                return Category.Children;
+            case "היסטוריה":
+                return Category.History;
+            case "קודש":
+                return Category.Holy;
+            case "ספרות מקצועית":
+                return Category.Professional;
             default:
                 return null;
 

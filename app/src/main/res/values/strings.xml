@@ -111,6 +111,8 @@
     <string name="RecoomnededNotFound">Error: Recommended not found</string>
     <string name="as_administrator">רישום כמנהל</string>
     <string name="cost">מחיר</string>
+    <string name="insertURL">הכנס כתובת תמונה</string>
+    <string name="URL">כתובת תמונה</string>
 
 
 </resources>
