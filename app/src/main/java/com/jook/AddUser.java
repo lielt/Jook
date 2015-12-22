@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.AndroidSuperApp;
 import com.R;
+import com.backend.enums.Privilege;
 
 public class AddUser extends AppCompatActivity {
 
@@ -26,6 +29,15 @@ public class AddUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin)) {
+
+
+            LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.options);
+            LinearLayout linearLayout2 = (LinearLayout) findViewById(R.id.add_admin);
+            linearLayout1.setVisibility(View.GONE);
+            linearLayout2.setVisibility(View.VISIBLE);
+        }
     }
 
     public void RegAsCusButton(View view)
@@ -43,6 +55,8 @@ public class AddUser extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 
     private void addDataAsExtra(Intent intent)
     {
@@ -70,7 +84,10 @@ public class AddUser extends AppCompatActivity {
 
     }
 
-    public void clear(View view) {
-        ((EditText) view).setText("");
+
+    public void RegAsAdmin(View view) {
+        Intent intent =new Intent(this,Add_Admin.class);
+        addDataAsExtra(intent);
+        startActivity(intent);
     }
 }

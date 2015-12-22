@@ -14,6 +14,10 @@ public class AddBook extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
+
+        //if user is supplier
+
+
     }
 
     public void CreateBook(View view) {
