@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.backend.entities.Admin;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
 import com.backend.entities.Name;
@@ -12,6 +13,7 @@ import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
 import com.backend.entities.User;
 import com.backend.enums.Category;
+import com.backend.enums.Level;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
@@ -40,6 +42,8 @@ public class AndroidSuperApp extends Application {
             buildDefultDataBase();
             CurrAppCart = null;
             CurrAppUser = null;
+            Admin a = new Admin("305062988","Hana","Tzur","036959981","0527560167","h@g.com","Brazil","100","Jerusalem","a",false, Level.Administrator);
+            BL.AddAdmin(a);
         }
         catch (Exception ex)
         {

@@ -1,7 +1,7 @@
 package com.backend.entities;
 
-import com.backend.enums.PayWay;
 import com.R;
+import com.backend.enums.PayWay;
 
 import static com.AndroidSuperApp.getContex;
 
@@ -16,6 +16,7 @@ public class Customer extends User
         PaymentMethod = paymentMethod;
         RecommendedBy = recommendedBy;
         NumOfRecommends = numOfRecommends;
+        super.setPrivilege(com.backend.enums.Privilege.Customer);
     }
 
     public PayWay getPaymentMethod() {

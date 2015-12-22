@@ -1,8 +1,8 @@
 package com.backend.entities;
 
+import com.R;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
-import com.R;
 
 import static com.AndroidSuperApp.getContex;
 
@@ -23,6 +23,8 @@ public class Supplier extends User
         ShippingMethod = shippingMethod;
         PaymentMethod = paymentMethod;
         Rate = rate;
+        super.setPrivilege(com.backend.enums.Privilege.Supplier);
+
     }
 
     public Supplier(Supplier source) throws Exception

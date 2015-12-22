@@ -9,6 +9,8 @@ public class Admin extends com.backend.entities.User
     public Admin(String ID, String firstName, String lastName, String phone, String cellPhone, String email, String street, String num, String city, String applicationPassword, boolean block, com.backend.enums.Level level) throws Exception {
         super(ID, firstName, lastName, phone, cellPhone, email, street, num, city, applicationPassword, block);
         Level = level;
+        super.setPrivilege(com.backend.enums.Privilege.OnlyAdmin);
+
     }
 
     public Level getLevel() {
