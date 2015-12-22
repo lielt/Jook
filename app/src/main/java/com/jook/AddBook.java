@@ -1,5 +1,6 @@
 package com.jook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -72,5 +73,8 @@ public class AddBook extends AppCompatActivity {
             }
 
         }catch (Exception e){}
+
+        Intent intent =new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }
