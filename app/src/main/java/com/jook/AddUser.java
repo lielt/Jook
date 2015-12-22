@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.enums.Privilege;
+
+import static com.backend.entities.SystemFunc.CheckIfStringAreEmpty;
 
 public class AddUser extends AppCompatActivity {
 
@@ -30,9 +32,8 @@ public class AddUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 
-        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin)) {
-
-
+        if (AndroidSuperApp.CurrAppUser!=null&& AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin))
+        {
             LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.options);
             LinearLayout linearLayout2 = (LinearLayout) findViewById(R.id.add_admin);
             linearLayout1.setVisibility(View.GONE);
@@ -61,28 +62,35 @@ public class AddUser extends AppCompatActivity {
     private void addDataAsExtra(Intent intent)
     {
         try {
-            String IDs = (String) ((TextView) findViewById(R.id.get_user_id)).getText();
+            String IDs = ((EditText) findViewById(R.id.get_user_id)).getText().toString();
             intent.putExtra(ID, IDs);
-            String PrivateNames = (String) ((TextView) findViewById(R.id.get_user_private_name)).getText();
+            String PrivateNames =  ((EditText) findViewById(R.id.get_user_private_name)).getText().toString();
             intent.putExtra(PrivateName, PrivateNames);
-            String FamilyNames = (String) ((TextView) findViewById(R.id.get_user_family_name)).getText();
+            String FamilyNames =  ((EditText) findViewById(R.id.get_user_family_name)).getText().toString();
             intent.putExtra(FamilyName, FamilyNames);
-            String Citys = (String) ((TextView) findViewById(R.id.get_user_city)).getText();
+            String Citys =  ((EditText) findViewById(R.id.get_user_city)).getText().toString();
             intent.putExtra(City, Citys);
-            String Streets = (String) ((TextView) findViewById(R.id.get_user_street)).getText();
+            String Streets =  ((EditText) findViewById(R.id.get_user_street)).getText().toString();
             intent.putExtra(Street, Streets);
-            String Buildings = (String) ((TextView) findViewById(R.id.get_user_building)).getText();
+            String Buildings =  ((EditText) findViewById(R.id.get_user_building)).getText().toString();
             intent.putExtra(Building, Buildings);
-            String Emails = (String) ((TextView) findViewById(R.id.get_mail)).getText();
+            String Emails =  ((EditText) findViewById(R.id.get_mail)).getText().toString();
             intent.putExtra(Email, Emails);
-            String Phones = (String) ((TextView) findViewById(R.id.get_user_phone_number)).getText();
+            String Phones = ((EditText) findViewById(R.id.get_user_phone_number)).getText().toString();
             intent.putExtra(Phone, Phones);
-            String CellPhones = (String) ((TextView) findViewById(R.id.get_user_cellphone_number)).getText();
+            String CellPhones =  ((EditText) findViewById(R.id.get_user_cellphone_number)).getText().toString();
             intent.putExtra(CellPhone, CellPhones);
+
+            CheckIfStringAreEmpty(IDs,PrivateNames,FamilyNames,Citys,Streets,Buildings,Emails,Phones,CellPhones);
         }
-        catch(Exception ex){};
+        catch(Exception ex)
+        {
+            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG);
+        };
 
     }
+
+
 
 
     public void RegAsAdmin(View view) {

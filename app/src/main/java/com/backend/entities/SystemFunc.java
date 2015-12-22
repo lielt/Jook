@@ -77,4 +77,16 @@ public final class SystemFunc {
         }
     }
 
+    public static void CheckIfStringAreEmpty(String ... list) throws Exception
+    {
+        for(String s: list )
+        {
+            if (s.equals(""))
+            {
+                throw new Exception("יש למלא את כל השדות כדי להמשיך");
+            }
+        }
+
+    }
+
 }

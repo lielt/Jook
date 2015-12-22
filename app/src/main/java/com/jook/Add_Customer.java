@@ -16,7 +16,7 @@ import static com.backend.entities.SystemFunc.GetPayWay;
 
 public class Add_Customer extends AppCompatActivity {
 
-    Intent MyIntent=getIntent();
+    Intent MyIntent;
 
     String ID = MyIntent.getStringExtra(ConstValue.ID);
     String PrivateNames= MyIntent.getStringExtra(ConstValue.PrivateName);
@@ -30,6 +30,7 @@ public class Add_Customer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MyIntent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__customer);
     }
