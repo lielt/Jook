@@ -44,17 +44,21 @@
             android:label="@string/title_activity_show_all_books_in_category"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".jook.Show_Recomends_for_book"
-            android:label="המלצות לספר">
+        <activity
+            android:name=".jook.Show_Recomends_for_book"
+            android:label="המלצות לספר" >
         </activity>
-        <activity android:name=".jook.OrderPage"
-            android:label="סיכום הזמנה">
+        <activity
+            android:name=".jook.OrderPage"
+            android:label="סיכום הזמנה" >
         </activity>
-        <activity android:name=".jook.AddBook"
-            android:label="הוסף ספר">
+        <activity
+            android:name=".jook.AddBook"
+            android:label="הוסף ספר" >
         </activity>
-        <activity android:name=".jook.Add_Admin"
-            android:label="הוסף מנהל">
+        <activity
+            android:name=".jook.Add_Admin"
+            android:label="הוסף מנהל" >
         </activity>
         <activity
             android:name=".jook.ShowBookMain"
@@ -62,6 +66,11 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".jook.Recommendation" >
+        </activity>
+        <activity
+            android:name=".jook.Show_Recommends_For_Book"
+            android:label="@string/title_activity_show__recommends__for__book"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

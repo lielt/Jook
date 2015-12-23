@@ -21,6 +21,11 @@ public class Recommendation extends AppCompatActivity {
 
         String Text=(((EditText)findViewById(R.id.recommendation_content)).getText()).toString();
         int numStars=((RatingBar)findViewById(R.id.get_stars)).getNumStars();
-        try
+        try{
+
+        }
+        catch (Exception ex){
+
+        }
     }
 }
