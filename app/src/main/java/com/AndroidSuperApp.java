@@ -41,17 +41,11 @@ public class AndroidSuperApp extends Application {
         try
         {
             buildDefultDataBase();
-            CurrAppCart = new Cart();
-            CurrAppCart.setCustomerID("000000000");
-            CurrAppCart.setID("");
-
-            CurrAppUser = new User("0","guest","guset","030001111","0521231234","test@gmail.com","null","1","null","",false);
-            CurrAppUser.setPrivilege(Privilege.Guest);
-
+            insertGuestMode();
         }
         catch (Exception ex)
         {
-            Toast.makeText(ctx,ex.getMessage(),Toast.LENGTH_LONG);
+            Toast.makeText(ctx, ex.getMessage(), Toast.LENGTH_LONG);
         }
 
     }
@@ -81,11 +75,28 @@ public class AndroidSuperApp extends Application {
 
     public static void onLogOut()
     {
-        CurrAppCart = null;
-        CurrAppUser = null;
+        try
+        {
+            insertGuestMode();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(ctx,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 
     public static Context getContex() { return ctx;}
+
+    private static void insertGuestMode() throws Exception
+    {
+        CurrAppCart = new Cart();
+        CurrAppCart.setCustomerID("000000000");
+        CurrAppCart.setID("");
+
+        CurrAppUser = new User("0","guest","guset","030001111","0521231234","test@gmail.com","null","1","null","",false);
+        CurrAppUser.setPrivilege(Privilege.Guest);
+    }
+
 
     private void buildDefultDataBase() throws Exception {
 
