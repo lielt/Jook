@@ -113,6 +113,7 @@
     <string name="cost">מחיר</string>
     <string name="insertURL">הכנס כתובת תמונה</string>
     <string name="URL">כתובת תמונה</string>
+    <string name="bookID">מסת\'\'ב</string>
 
 
 </resources>

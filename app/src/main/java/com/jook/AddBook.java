@@ -1,6 +1,5 @@
 package com.jook;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,13 +7,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
 import com.backend.entities.Name;
 import com.backend.entities.Supplier_Book;
-import com.backend.enums.*;
+import com.backend.enums.Category;
+import com.backend.enums.Privilege;
 
 import static com.backend.entities.SystemFunc.GetCategory;
 import static com.backend.entities.SystemFunc.tryParseFloat;
@@ -40,6 +41,7 @@ public class AddBook extends AppCompatActivity {
     }
 
     public void CreateBook(View view) {
+        String id = (((EditText)findViewById(R.id.get_book_id)).getText()).toString();
         String Name=(((EditText)findViewById(R.id.get_book_name)).getText()).toString();
         String WriterPname= (((EditText)findViewById(R.id.get_writer_private_name)).getText()).toString();
         String WriterFname= (((EditText)findViewById(R.id.get_writer_family_name)).getText()).toString();
@@ -54,7 +56,7 @@ public class AddBook extends AppCompatActivity {
         boolean ThickCover=((Switch)findViewById(R.id.get_binding)).isChecked();
         String Url=(((EditText)findViewById(R.id.get_picture_url)).getText()).toString();
         try {
-            Book newbook = new Book("1", Name, new Name(WriterPname, WriterFname),Publisher,ThickCover,pYear,category,Url );
+            Book newbook = new Book(id, Name, new Name(WriterPname, WriterFname),Publisher,ThickCover,pYear,category,Url );
             AndroidSuperApp.BL.AddBook(newbook);
             if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier)) {
                 String Price = (((EditText) findViewById(R.id.get_book_price)).getText()).toString();
@@ -69,12 +71,16 @@ public class AddBook extends AppCompatActivity {
                 }
                 Supplier_Book sb=new Supplier_Book(AndroidSuperApp.CurrAppUser.getID(),newbook.getID(),amount,price);
                 AndroidSuperApp.BL.addBookToSupplier(sb);
+                Toast.makeText(AddBook.this, "ספר נוסף בהצלחה", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
 
-        }catch (Exception e){}
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(AddBook.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
-        Intent intent =new Intent(this,MainActivity.class);
-        startActivity(intent);
     }
 }

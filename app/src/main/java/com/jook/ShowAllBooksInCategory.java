@@ -27,6 +27,7 @@ import java.util.HashMap;
 public class ShowAllBooksInCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String KEY_B_ID = "id";
     public static final String KEY_B_TITLE = "title";
     public static final String KEY_B_WRITER = "writer";
     public static final String KEY_B_YEAR = "year";
@@ -76,7 +77,7 @@ public class ShowAllBooksInCategory extends AppCompatActivity
                 db = AndroidSuperApp.BL.GetBooksByParameters("category", filter);
 
             // Convert Data from BL database to HashMapArrayList
-            ArrayList<HashMap<String, String>> BookList = new ArrayList<HashMap<String, String>>();
+            final ArrayList<HashMap<String, String>> BookList = new ArrayList<HashMap<String, String>>();
 
 
             // looping through all song nodes <song>
@@ -86,6 +87,7 @@ public class ShowAllBooksInCategory extends AppCompatActivity
                 Book b = db.get(i);
 
                 // adding each child node to HashMap key => value
+                map.put(KEY_B_ID, b.getID());
                 map.put(KEY_B_TITLE, b.getBookName());
                 map.put(KEY_B_WRITER, b.getWriterAsString());
                 map.put(KEY_B_YEAR, String.valueOf(b.getYear()));
@@ -108,7 +110,7 @@ public class ShowAllBooksInCategory extends AppCompatActivity
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                            String BookId = AndroidSuperApp.BL.GetAllBooks().get(position).getID();
+                            String BookId = BookList.get(position).get(KEY_B_ID);
 
                             Intent intent = new Intent(getBaseContext(), ShowBookManager.class);
                             intent.putExtra(ShowBookManager.KEY_BOOK_ID, BookId);
