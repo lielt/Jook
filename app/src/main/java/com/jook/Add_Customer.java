@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
@@ -27,6 +28,8 @@ public class Add_Customer extends AppCompatActivity {
     String Email;
     String Phone;
     String CellPhone;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,16 @@ public class Add_Customer extends AppCompatActivity {
             PayWay payWay = GetPayWay(payways);
             Customer newCus = new Customer(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false,payWay,RecommendedBy , 0);
             AndroidSuperApp.BL.AddCustomer(newCus);
-        }catch (Exception ex){};
-        Intent intent =new Intent(this,MainActivity.class);
-        startActivity(intent);
+            Toast.makeText(this, "ספק נוסף בהצלחה", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            AddUser.AddUserActivity.finish();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(Add_Customer.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+        };
+
     }
 }

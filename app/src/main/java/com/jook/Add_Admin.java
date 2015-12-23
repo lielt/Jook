@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
@@ -54,10 +55,17 @@ public class Add_Admin extends AppCompatActivity {
                 newSup = new Admin(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, Level.Editor);
             }
             AndroidSuperApp.BL.AddAdmin(newSup);
+            Toast.makeText(this, "מנהל נוסף בהצלחה", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            AddUser.AddUserActivity.finish();
 
-        }catch (Exception ex){};
-        Intent intent =new Intent(this,MainActivity.class);
-        startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+        };
     }
 
 }

@@ -1,5 +1,6 @@
 package com.jook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,10 +28,13 @@ public class AddUser extends AppCompatActivity {
     public static final String Phone = "addUserPhone";
     public static final String CellPhone = "addUserCellPhone";
 
+    public static Activity AddUserActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+        AddUserActivity = this;
 
         if (AndroidSuperApp.CurrAppUser!=null&& AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin))
         {
@@ -70,6 +74,18 @@ public class AddUser extends AppCompatActivity {
 
     }
 
+    public void RegAsAdmin(View view) {
+        Intent intent =new Intent(this,Add_Admin.class);
+        try {
+            addDataAsExtra(intent);
+            startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
 
 
     private void addDataAsExtra(Intent intent) throws Exception
@@ -101,20 +117,5 @@ public class AddUser extends AppCompatActivity {
             throw ex;
         };
 
-    }
-
-
-
-
-    public void RegAsAdmin(View view) {
-        Intent intent =new Intent(this,Add_Admin.class);
-        try {
-            addDataAsExtra(intent);
-            startActivity(intent);
-        }
-        catch (Exception ex)
-        {
-            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
-        }
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
@@ -58,8 +59,17 @@ public class Add_Supplier extends AppCompatActivity {
             PayWay payWay = GetPayWay(payways);
             Supplier newSup = new Supplier(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, BuisnessName, ShippingWay, payWay, 0);
             AndroidSuperApp.BL.AddSupplier(newSup);
-        }catch (Exception ex){};
-        Intent intent =new Intent(this,MainActivity.class);
-        startActivity(intent);
+
+            Toast.makeText(Add_Supplier.this, "ספק נוסף בהצלחה", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            AddUser.AddUserActivity.finish();
+
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+        };
     }
 }
