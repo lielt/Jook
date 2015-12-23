@@ -54,6 +54,8 @@
         </activity>
         <activity android:name=".jook.Add_Admin" >
         </activity>
+        <activity android:name=".jook.Recommendation" >
+        </activity>
     </application>
 
 </manifest>
