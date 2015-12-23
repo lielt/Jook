@@ -502,8 +502,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        Intent intent = new Intent(getBaseContext(), ShowBookManager.class);
-        intent.putExtra(ShowBookManager.KEY_BOOK_ID, BookID);
+        Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
+        intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
         startActivity(intent);
     }
 

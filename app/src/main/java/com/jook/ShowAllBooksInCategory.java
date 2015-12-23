@@ -112,8 +112,8 @@ public class ShowAllBooksInCategory extends AppCompatActivity
 
                             String BookId = BookList.get(position).get(KEY_B_ID);
 
-                            Intent intent = new Intent(getBaseContext(), ShowBookManager.class);
-                            intent.putExtra(ShowBookManager.KEY_BOOK_ID, BookId);
+                            Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
+                            intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookId);
                             startActivity(intent);
                         }
                     });
