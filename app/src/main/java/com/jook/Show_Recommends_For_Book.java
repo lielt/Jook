@@ -38,8 +38,10 @@ public class Show_Recommends_For_Book extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent myIntent = new Intent(view.getContext(), RecommendationActivity.class);
+                String BookID=CurrBook.getID();
+                myIntent.putExtra(KEY_BOOK_ID, BookID);
+                startActivity(myIntent);
             }
         });
 

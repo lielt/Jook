@@ -65,7 +65,7 @@
             android:label="@string/title_activity_show_book_main"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".jook.Recommendation" >
+        <activity android:name=".jook.RecommendationActivity" >
         </activity>
         <activity
             android:name=".jook.Show_Recommends_For_Book"
