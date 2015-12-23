@@ -15,6 +15,7 @@ import com.R;
 import com.backend.entities.Book;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
+import com.backend.enums.Privilege;
 import com.jook.Adapters.SupDataAdapter;
 import com.jook.DownloadImageFromNetTools.ImageLoader;
 
@@ -57,60 +58,67 @@ public class ShowBookManager extends AppCompatActivity {
 
             ////////////////////////////////////////////////////////////////
 
-            final ArrayList<HashMap<String, String>> shopLlist = new ArrayList<HashMap<String, String>>();
-
-            ArrayList<Supplier_Book> spList = AndroidSuperApp.BL.GetSupplierByBook(CurrBook.getID());
             TextView getBookText = (TextView)this.findViewById(R.id.getBookInSupText);
 
-
-            if (spList.size()>0)
+            if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
             {
-                getBookText.setText("ניתן להשיג את הספר אצל הספקים הבאים");
-
-                for (int i = 0; i < spList.size(); i++)
-                {
-                    // creating new HashMap
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    Supplier_Book sb = spList.get(i);
-                    Supplier s = AndroidSuperApp.BL.GetSupplierByID(sb.getSupplierID());
-
-                    // adding each child node to HashMap key => value
-                    map.put(SupDataAdapter.KEY_SHOP_ID, s.getID());
-                    map.put(SupDataAdapter.KEY_SHOP_NAME, s.getBusinessName());
-                    map.put(SupDataAdapter.KEY_SHOP_PRICE, String.valueOf(sb.getPrice()));
-                    map.put(SupDataAdapter.KEY_SHOP_SHIP, s.getShippingMethodAsString());
-                    map.put(SupDataAdapter.KEY_SHOP_STAR, String.valueOf(s.getRate()));
-
-
-                    // adding HashList to ArrayList
-                    shopLlist.add(map);
-                }
-
-                final ListView listView = (ListView)this.findViewById(R.id.sup_for_book);
-                SupDataAdapter adapter = new SupDataAdapter(this,shopLlist);
-
-                listView.setAdapter(adapter);
-
-
-                listView.setOnItemClickListener(
-                    new AdapterView.OnItemClickListener()
-                    {
-                        @Override
-                        public void onItemClick (AdapterView <?> parent, View view,int position,long id)
-                        {
-                         Intent intent = new Intent(getBaseContext(), OrderPage.class);
-                         intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
-                         intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
-                         startActivity(intent);
-                        }
-
-                });
+                getBookText.setText("לא ניתן לרכוש ספר כאורח, לרכישה אנא התחבר...");
             }
             else
             {
-                getBookText.setText("לא קיימים ספקים שמוכרים ספר זה");
-            }
+                final ArrayList<HashMap<String, String>> shopLlist = new ArrayList<HashMap<String, String>>();
 
+                ArrayList<Supplier_Book> spList = AndroidSuperApp.BL.GetSupplierByBook(CurrBook.getID());
+
+
+                if (spList.size()>0)
+                {
+                    getBookText.setText("ניתן להשיג את הספר אצל הספקים הבאים");
+
+                    for (int i = 0; i < spList.size(); i++)
+                    {
+                        // creating new HashMap
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        Supplier_Book sb = spList.get(i);
+                        Supplier s = AndroidSuperApp.BL.GetSupplierByID(sb.getSupplierID());
+
+                        // adding each child node to HashMap key => value
+                        map.put(SupDataAdapter.KEY_SHOP_ID, s.getID());
+                        map.put(SupDataAdapter.KEY_SHOP_NAME, s.getBusinessName());
+                        map.put(SupDataAdapter.KEY_SHOP_PRICE, String.valueOf(sb.getPrice()));
+                        map.put(SupDataAdapter.KEY_SHOP_SHIP, s.getShippingMethodAsString());
+                        map.put(SupDataAdapter.KEY_SHOP_STAR, String.valueOf(s.getRate()));
+
+
+                        // adding HashList to ArrayList
+                        shopLlist.add(map);
+                    }
+
+                    final ListView listView = (ListView)this.findViewById(R.id.sup_for_book);
+                    SupDataAdapter adapter = new SupDataAdapter(this,shopLlist);
+
+                    listView.setAdapter(adapter);
+
+
+                    listView.setOnItemClickListener(
+                            new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick (AdapterView <?> parent, View view,int position,long id)
+                                {
+                                    Intent intent = new Intent(getBaseContext(), OrderPage.class);
+                                    intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
+                                    intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
+                                    startActivity(intent);
+                                }
+
+                            });
+                }
+                else
+                {
+                    getBookText.setText("לא קיימים ספקים שמוכרים ספר זה");
+                }
+            }
 
         } catch (Exception ex) {
 
