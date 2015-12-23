@@ -114,6 +114,7 @@
     <string name="insertURL">הכנס כתובת תמונה</string>
     <string name="URL">כתובת תמונה</string>
     <string name="bookID">מסת\'\'ב</string>
+    <string name="title_activity_show_book_main">הצגת ספר</string>
 
 
 </resources>
