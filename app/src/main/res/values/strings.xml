@@ -99,7 +99,7 @@
     <string name="thick">עבה</string>
     <string name="title_activity_supplier_recomendation">SupplierRecomendation</string>
     <string name="rate">דירוג</string>
-    <string name="content">תוכן</string>
+    <string name="content">תוכן:</string>
     <string name="addRecommendation">הוסף המלצה</string>
     <string name="addAdmin">רשום אדמינסטרטור</string>
     <string name="title_activity_new_admin">newAdminActivity</string>
