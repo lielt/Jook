@@ -28,7 +28,7 @@ public class Show_Recomends_for_book extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show__recomends_for_book);
+        setContentView(R.layout.activity_show__recommends__for__book);
 
         try
         {

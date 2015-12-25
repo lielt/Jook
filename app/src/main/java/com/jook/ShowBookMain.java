@@ -167,8 +167,8 @@ public class ShowBookMain extends AppCompatActivity
 
     public void showRecForBook(View view)
     {
-        Intent intent = new Intent(this,Show_Recomends_for_book.class);
-        intent.putExtra(Show_Recomends_for_book.KEY_BOOK_ID,CurrBook.getID());
+        Intent intent = new Intent(this,Show_Recommends_For_Book.class);
+        intent.putExtra(Show_Recommends_For_Book.KEY_BOOK_ID,CurrBook.getID());
         startActivity(intent);
     }
 
