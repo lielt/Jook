@@ -116,6 +116,10 @@
     <string name="bookID">מסת\'\'ב</string>
     <string name="title_activity_show_book_main">הצגת ספר</string>
     <string name="title_activity_show__recommends__for__book">Show_Recommends_For_Book</string>
+    <string name="sup_name">שם הספק</string>
+    <string name="pricePerOne">מחיר ליחידה</string>
+    <string name="forPay">לתשלום</string>
+    <string name="title_activity_cart">CartActivity</string>
 
 
 </resources>

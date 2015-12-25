@@ -80,7 +80,7 @@ public class ShowAllBooksInCategory extends AppCompatActivity
             final ArrayList<HashMap<String, String>> BookList = new ArrayList<HashMap<String, String>>();
 
 
-            // looping through all song nodes <song>
+
             for (int i = 0; i < db.size(); i++) {
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
