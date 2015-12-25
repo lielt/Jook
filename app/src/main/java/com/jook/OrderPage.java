@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
+import com.backend.entities.Customer;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
@@ -71,7 +72,7 @@ public class OrderPage extends AppCompatActivity {
             SupName.setText(mySupplier.getBusinessName());
             SupID.setText(mySupplier.getID());
             SupShip.setText(mySupplier.getShippingMethodAsString());
-            SupPay.setText(mySupplier.getPayMethodAsString());
+            SupPay.setText(((Customer)AndroidSuperApp.CurrAppUser).getPayMethodAsString());
             SupAdrr.setText(mySupplier.getContactInfo().getAddress().getFullAddressAsString());
 
             BookTitle.setText(myBook.getBookName());

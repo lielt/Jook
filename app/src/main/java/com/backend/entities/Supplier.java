@@ -1,7 +1,6 @@
 package com.backend.entities;
 
 import com.R;
-import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
 
 import static com.AndroidSuperApp.getContex;
@@ -13,15 +12,13 @@ public class Supplier extends User
 {
     private String BusinessName;
     private Ship ShippingMethod;
-    private PayWay PaymentMethod;
     private int Rate;
 
 
-    public Supplier(String ID, String firstName, String lastName, String phone, String cellPhone, String email, String street, String num, String city, String applicationPassword, boolean block,String businessName, Ship shippingMethod, PayWay paymentMethod, int rate) throws Exception{
+    public Supplier(String ID, String firstName, String lastName, String phone, String cellPhone, String email, String street, String num, String city, String applicationPassword, boolean block,String businessName, Ship shippingMethod, int rate) throws Exception{
         super(ID, firstName,lastName, phone, cellPhone, email, street, num, city, applicationPassword, block);
         BusinessName = businessName;
         ShippingMethod = shippingMethod;
-        PaymentMethod = paymentMethod;
         Rate = rate;
         super.setPrivilege(com.backend.enums.Privilege.Supplier);
 
@@ -29,7 +26,7 @@ public class Supplier extends User
 
     public Supplier(Supplier source) throws Exception
     {
-        this(source.getID(), source.getContactName().getFirstName(), source.getContactName().getLastName(), source.getContactInfo().getPhone(), source.getContactInfo().getCellPhone(), source.getContactInfo().getEmail(), source.getContactInfo().getAddress().getStreet(), source.getContactInfo().getAddress().getNum(), source.getContactInfo().getAddress().getCity(), source.getApplicationPassword(), source.isBlock(), source.getBusinessName(), source.getShippingMethod(), source.getPaymentMethod(), source.getRate());
+        this(source.getID(), source.getContactName().getFirstName(), source.getContactName().getLastName(), source.getContactInfo().getPhone(), source.getContactInfo().getCellPhone(), source.getContactInfo().getEmail(), source.getContactInfo().getAddress().getStreet(), source.getContactInfo().getAddress().getNum(), source.getContactInfo().getAddress().getCity(), source.getApplicationPassword(), source.isBlock(), source.getBusinessName(), source.getShippingMethod(), source.getRate());
     }
 
 
@@ -39,10 +36,6 @@ public class Supplier extends User
 
     public Ship getShippingMethod() {
         return ShippingMethod;
-    }
-
-    public PayWay getPaymentMethod() {
-        return PaymentMethod;
     }
 
     public int getRate() {
@@ -66,23 +59,6 @@ public class Supplier extends User
         return "";
     }
 
-    public String getPayMethodAsString()
-    {
-        switch (this.getPaymentMethod())
-        {
-            case Cash: return "מזומן";
-
-            case Check: return "צק";
-
-            case Credit: return "אשראי";
-
-            case BankTransfer: return "העברה בנקאית";
-                
-        }
-
-        return "";
-    }
-
 
 
     public void setBusinessName(String businessName) {
@@ -91,10 +67,6 @@ public class Supplier extends User
 
     public void setShippingMethod(Ship shippingMethod) {
         ShippingMethod = shippingMethod;
-    }
-
-    public void setPaymentMethod(PayWay paymentMethod) {
-        PaymentMethod = paymentMethod;
     }
 
     public void setRate(int rate) {

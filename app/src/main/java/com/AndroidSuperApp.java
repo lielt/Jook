@@ -14,7 +14,6 @@ import com.backend.entities.Supplier_Book;
 import com.backend.entities.User;
 import com.backend.enums.Category;
 import com.backend.enums.Level;
-import com.backend.enums.PayWay;
 import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
@@ -128,8 +127,8 @@ public class AndroidSuperApp extends Application {
         AndroidSuperApp.BL.AddBook(b12);
 
 
-        Supplier s1 = new Supplier("302724208","ליאל","צור","036959917","0523139051","LIEL71@GMAIL.COM","ברזיל","100","ירושלים","12369091",false,"הראל ספרים", Ship.CourierService, PayWay.Credit,5);
-        Supplier s2 = new Supplier("304901408","ידידאל","לוק","026589382","0524789621","Yedid@GMAIL.COM","פסגתזאב","100","ירושלים","56756",false,"הדר ספרים", Ship.CourierService, PayWay.BankTransfer,3);
+        Supplier s1 = new Supplier("302724208","ליאל","צור","036959917","0523139051","LIEL71@GMAIL.COM","ברזיל","100","ירושלים","12369091",false,"הראל ספרים", Ship.CourierService,5);
+        Supplier s2 = new Supplier("304901408","ידידאל","לוק","026589382","0524789621","Yedid@GMAIL.COM","פסגתזאב","100","ירושלים","56756",false,"הדר ספרים", Ship.CourierService,3);
 
         AndroidSuperApp.BL.AddSupplier(s1);
         AndroidSuperApp.BL.AddSupplier(s2);

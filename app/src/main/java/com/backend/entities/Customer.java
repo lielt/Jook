@@ -19,6 +19,24 @@ public class Customer extends User
         super.setPrivilege(com.backend.enums.Privilege.Customer);
     }
 
+    public String getPayMethodAsString()
+    {
+        switch (getPaymentMethod())
+        {
+
+            case Cash: return "מזומן";
+
+            case Check: return "צק";
+
+            case Credit: return "אשראי";
+
+            case BankTransfer: return "העברה בנקאית";
+        }
+
+        return "";
+    }
+
+
     public PayWay getPaymentMethod() {
         return PaymentMethod;
     }
