@@ -17,6 +17,7 @@ import com.backend.enums.Level;
 import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 
 public class AndroidSuperApp extends Application {
 
@@ -41,6 +42,9 @@ public class AndroidSuperApp extends Application {
         {
             buildDefultDataBase();
             insertGuestMode();
+
+            new AsyncSendMail().execute();
+
         }
         catch (Exception ex)
         {
@@ -48,6 +52,8 @@ public class AndroidSuperApp extends Application {
         }
 
     }
+
+
 
     public static boolean onLogin(String mail, String pass)
     {

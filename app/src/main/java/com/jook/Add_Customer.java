@@ -59,6 +59,16 @@ public class Add_Customer extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             AddUser.AddUserActivity.finish();
+
+//            try {
+//                GMailSender sender = new GMailSender("jookmanager1@gmail.com", "12369091");
+//                sender.sendMail("This is Subject",
+//                        "This is Body",
+//                        "jookmanager1@gmail.com",
+//                        "liel71@gmail.com");
+//            } catch (Exception e) {
+//
+//            }
         }
         catch (Exception ex)
         {
