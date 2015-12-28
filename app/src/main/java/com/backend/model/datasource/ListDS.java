@@ -555,9 +555,9 @@ public class ListDS implements Backend, Serializable
         {
             // Update Cart
             Cart c = GetCartByID(order.getCartId());
-            c.setNumOfOrders(c.getNumOfOrders()-1);
+            c.setNumOfOrders(c.getNumOfOrders() - 1);
             Supplier_Book sb  = SearchSupplier_BookById(new Supplier_Book(o.getSupplierId(),o.getBookId()));
-            c.setOriginalPrice(c.getOriginalPrice()-(o.getAmount()* sb.getPrice()));
+            c.setOriginalPrice(c.getOriginalPrice() - (o.getAmount() * sb.getPrice()));
             this.UpdateCart(c);
 
             // Remove Order
@@ -926,4 +926,10 @@ public class ListDS implements Backend, Serializable
 
         return cart;
     }
+
+   public float GetBookPrice(String SupID,String BookID)
+   {
+       Supplier_Book sb=GetSupplierBook(BookID,SupID);
+       return sb.getPrice();
+   }
 }

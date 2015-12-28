@@ -45,7 +45,7 @@
             android:text="@string/amount"
             android:textSize="10dip"/>
         <TextView
-            android:id="@id/book_amount"
+            android:id="@+id/book_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/one"
@@ -68,7 +68,7 @@
             android:text="@string/pricePerOne"
             android:textSize="10dip"/>
         <TextView
-            android:id="@id/book_price"
+            android:id="@+id/book_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/one"

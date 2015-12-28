@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import static com.backend.entities.SystemFunc.*;
 import com.R;
 
 import java.util.ArrayList;
@@ -17,6 +17,10 @@ import java.util.HashMap;
  * Created by יוסי on 27/12/2015.
  */
 public class OrderDataAdapter extends BaseAdapter {
+    public static final String KEY_BOOK_NAME="bookName";
+    public static final String KEY_SUPPLIER_NAME="supplierName";
+    public static final String KEY_AMOUNT="amount";
+    public static final String KEY_PRICE="price";
 
     private Activity activity;
     private ArrayList<HashMap<String, String>> data;
@@ -59,7 +63,18 @@ public class OrderDataAdapter extends BaseAdapter {
         HashMap<String, String> order = new HashMap<String, String>();
         order=data.get(position);
 
-//        bName.setText();
+        bName.setText(order.get(KEY_BOOK_NAME));
+        sName.setText(order.get(KEY_SUPPLIER_NAME));
+        bAmount.setText(order.get(KEY_AMOUNT));
+        bPrice.setText(order.get(KEY_PRICE));
+        String tempP=order.get(KEY_PRICE);
+        String tempA=order.get(KEY_AMOUNT);
+        if (tryParseInt(tempA)&&tryParseFloat(tempP)) {
+            Float total = (Integer.parseInt(tempA)) * (Float.parseFloat(tempP));
+            tPrice.setText(total.toString());
+        }
+
+
 
 
         return vi;

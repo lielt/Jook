@@ -6,12 +6,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Cart;
 import com.backend.entities.Order;
+import com.jook.Adapters.OrderDataAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,32 +40,33 @@ public class CartActivity extends AppCompatActivity {
             Cart cart=AndroidSuperApp.CurrAppCart;
 
             ArrayList<Order> spList= AndroidSuperApp.BL.GetAllCartOrders(cart.getID());
-            ArrayList<HashMap<String, String>> orderLlist = new ArrayList<HashMap<String, String>>();
+            ArrayList<HashMap<String, String>> orderList = new ArrayList<HashMap<String, String>>();
 
-//            if (spList.size()>0)
-//            {
-//
-//                for (int i = 0; i < spList.size(); i++)
-//                {
-//                    // creating new HashMap
-//                    HashMap<String, String> map = new HashMap<String, String>();
-//                    com.backend.entities.Order r = spList.get(i);
-//
-//                    User u = AndroidSuperApp.BL.GetUserByID(r.getId());
-//                    // adding each child node to HashMap key => value
-//                    map.put(RecDataAdapter.KEY_RECOMMENDS, u.getContactName().GetFullName());
-//                    map.put(RecDataAdapter.KEY_RATE, String.valueOf(r.getRate()));
-//                    map.put(RecDataAdapter.KEY_CONTENT, r.getContent());
-//
-//                    // adding HashList to ArrayList
-//                    recLlist.add(map);
-//                }
-//
-//                ListView listView = (ListView)this.findViewById(R.id.list_for_rec);
-//                RecDataAdapter adapter = new RecDataAdapter(this,recLlist);
-//
-//                listView.setAdapter(adapter);
-//            }
+            if (spList.size()>0)
+            {
+
+                for (int i = 0; i < spList.size(); i++)
+                {
+                    // creating new HashMap
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    com.backend.entities.Order r = spList.get(i);
+
+                    //User u = AndroidSuperApp.BL.GetUserByID(r.getId());
+                    // adding each child node to HashMap key => value
+                    map.put(OrderDataAdapter.KEY_BOOK_NAME,r.getBookId() );
+                    map.put(OrderDataAdapter.KEY_SUPPLIER_NAME, r.getSupplierId());
+                    map.put(OrderDataAdapter.KEY_AMOUNT, String.valueOf(r.getAmount()));
+                    map.put(OrderDataAdapter.KEY_PRICE, String.valueOf(AndroidSuperApp.BL.GetBookPrice(r.getSupplierId(), r.getBookId())));
+
+                    // adding HashList to ArrayList
+                    orderList.add(map);
+                }
+
+                ListView listView = (ListView)this.findViewById(R.id.list_for_rec);
+                OrderDataAdapter adapter = new OrderDataAdapter(this,orderList);
+
+                listView.setAdapter(adapter);
+            }
 
 
         }
