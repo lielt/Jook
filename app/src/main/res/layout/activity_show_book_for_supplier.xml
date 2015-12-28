@@ -88,9 +88,70 @@
         android:layout_marginTop="15dp"
         android:orientation="vertical">
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/book_amount"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/picture">
 
+            <EditText android:id="@+id/get_book_amount"
+                android:inputType="number"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/one"
+                />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amount"
+                />
+        </LinearLayout>
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/book_price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/book_amount">
 
+            <EditText android:id="@+id/get_book_price"
+                android:inputType="number"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint=""
+                />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cost"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="עדכן פרטי ספר"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"
+            android:background="#11cc39"
+            android:onClick="updateBookForSupplier"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="מחק מהמלאי"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"
+            android:background="#e53737"
+            android:onClick="deleteBookForSupplier"/>
 
 
     </LinearLayout>

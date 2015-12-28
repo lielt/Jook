@@ -236,8 +236,9 @@ public class Stock extends AppCompatActivity {
 
                                     String BookId = BookList.get(position).get(KEY_B_ID);
 
-                                    Intent intent = new Intent(mCtx, ShowBookMain.class);
+                                    Intent intent = new Intent(mCtx, ShowBookForSupplier.class);
                                     intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookId);
+                                    mAct.finish();
                                     startActivity(intent);
                                 }
                             });
