@@ -77,7 +77,7 @@ public final class SystemFunc {
                 return PayWay.BankTransfer;
             case "מזומן":
                 return PayWay.Cash;
-            case "צ'ק":
+            case "צק":
                 return PayWay.Check;
             case "אשראי":
                 return PayWay.Credit;

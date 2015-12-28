@@ -73,6 +73,11 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
+            android:name=".jook.Stock"
+            android:label="@string/title_activity_stock"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
             android:name=".jook.CartActivity"
             android:label="@string/title_activity_cart"
             android:theme="@style/AppTheme.NoActionBar" >

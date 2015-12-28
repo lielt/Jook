@@ -120,6 +120,8 @@
     <string name="pricePerOne">מחיר ליחידה</string>
     <string name="forPay">לתשלום</string>
     <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_stock">Stock</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="payway_array">
-        <item> מוזומן </item>
+        <item> מזומן </item>
         <item> אשראי </item>
         <item> צק </item>
         <item>העברה בנקאית </item>

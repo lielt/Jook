@@ -59,7 +59,7 @@ public class OrderDataAdapter extends BaseAdapter {
         HashMap<String, String> order = new HashMap<String, String>();
         order=data.get(position);
 
-        bName.setText();
+//        bName.setText();
 
 
         return vi;
