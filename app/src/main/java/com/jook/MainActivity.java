@@ -440,8 +440,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
+        if (id == R.id.command1) {
+            startActivity(new Intent(this,Stock.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -455,7 +455,7 @@ public class MainActivity extends AppCompatActivity
         {
             AndroidSuperApp.onLogOut();
             Toast.makeText(MainActivity.this, "משתמש התנתק בהצלחה", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 

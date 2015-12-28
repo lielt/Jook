@@ -595,7 +595,7 @@ public class ListDS implements Backend, Serializable
         {
             String Parameter = List[i];
             String Value = List[i+1];
-            switch (Parameter)
+            switch (Parameter.toLowerCase())
             {
                 case "Id":
                 case "ID":
@@ -708,15 +708,88 @@ public class ListDS implements Backend, Serializable
 
                     break;
 
+                case "supplier":
+                    ArrayList<Book> tempDB = new ArrayList<Book>();
+                    for (Supplier_Book sp : SupplierBookList)
+                    {
+                        if (sp.getSupplierID().equals(Value))
+                        {
+                            tempDB.add(SearchBookByID(sp.getBookID()));
+                        }
+                    }
+                    for (Book b : Source)
+                    {
+                        Boolean fondInSupplierDB = false;
+                        for (Book tBook : tempDB)
+                        {
+                            if (tBook.getID().equals(b.getID()))
+                                fondInSupplierDB = true;
+                        }
+                        if (!fondInSupplierDB)
+                        {
+                            Result.remove(b);
+                        }
+                    }
+                    break;
+                case "maxamount":
+                    int mAmount = Integer.parseInt(Value);
+                    ArrayList<Book> tempDB2 = new ArrayList<Book>();
+                    for (Supplier_Book sp : SupplierBookList)
+                    {
+                        if (sp.getAmount() <= mAmount )
+                        {
+                            tempDB2.add(SearchBookByID(sp.getBookID()));
+                        }
+                    }
+                    for (Book b : Source)
+                    {
+                        Boolean fondInSupplierDB = false;
+                        for (Book tBook : tempDB2)
+                        {
+                            if (tBook.getID().equals(b.getID()))
+                                fondInSupplierDB = true;
+                        }
+                        if (!fondInSupplierDB)
+                        {
+                            Result.remove(b);
+                        }
+                    }
+                    break;
+
+                case "minamount":
+                    int mAmount2 = Integer.parseInt(Value);
+                    ArrayList<Book> tempDB3 = new ArrayList<Book>();
+                    for (Supplier_Book sp : SupplierBookList)
+                    {
+                        if (sp.getAmount() >= mAmount2 )
+                        {
+                            tempDB3.add(SearchBookByID(sp.getBookID()));
+                        }
+                    }
+                    for (Book b : Source)
+                    {
+                        Boolean fondInSupplierDB = false;
+                        for (Book tBook : tempDB3)
+                        {
+                            if (tBook.getID().equals(b.getID()))
+                                fondInSupplierDB = true;
+                        }
+                        if (!fondInSupplierDB)
+                        {
+                            Result.remove(b);
+                        }
+                    }
+                    break;
+
                 default:
                     throw new Exception("Parameter name not valid!!");
 
             }
-
-            return Result;
-
         }
-        return null;
+        if (Result.size() > 0)
+            return new ArrayList<Book>(Result);
+        else
+            return null;
     }
 
     private boolean ConvertStringToBool(String s) throws Exception

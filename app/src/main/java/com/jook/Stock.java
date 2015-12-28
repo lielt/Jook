@@ -1,8 +1,10 @@
 package com.jook;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,11 +17,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.AndroidSuperApp;
 import com.R;
+import com.backend.entities.Book;
+import com.backend.entities.User;
+import com.backend.enums.Privilege;
+import com.jook.Adapters.BookDataAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Stock extends AppCompatActivity {
+
+    public static final String KEY_B_ID = "id";
+    public static final String KEY_B_TITLE = "title";
+    public static final String KEY_B_WRITER = "writer";
+    public static final String KEY_B_YEAR = "year";
+    public static final String KEY_B_THUMB_URL = "thumb_url";
+    private static ListView list;
+    private static BookDataAdapter adapter;
+    private static Context mCtx;
+    private static Activity mAct;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -31,6 +53,7 @@ public class Stock extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -39,6 +62,9 @@ public class Stock extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mCtx = this;
+        mAct = this;
 
         setContentView(R.layout.activity_stock);
 
@@ -59,8 +85,8 @@ public class Stock extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), AddBook.class);
+                startActivity(intent);
             }
         });
 
@@ -117,11 +143,11 @@ public class Stock extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "הכול";
                 case 1:
-                    return "SECTION 2";
+                    return "לפני סיום";
                 case 2:
-                    return "SECTION 3";
+                    return "אזלו";
             }
             return null;
         }
@@ -156,8 +182,74 @@ public class Stock extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
         {
             View rootView = inflater.inflate(R.layout.fragment_stock, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            User mUser = AndroidSuperApp.CurrAppUser;
+
+            if (mUser!=null && mUser.getPrivilege().equals(Privilege.Supplier))
+            {
+                try {
+                    ArrayList<Book> db = new ArrayList<Book>();
+
+                    int sectionFilter = getArguments().getInt(ARG_SECTION_NUMBER);
+                    switch (sectionFilter)
+                    {
+                        case 1:
+                            db = AndroidSuperApp.BL.GetBooksByParameters("supplier",mUser.getID());
+                            break;
+                        case 2:
+                            db = AndroidSuperApp.BL.GetBooksByParameters("supplier",mUser.getID(),"maxamount","4","minamount","1");
+                            break;
+                        case 3:
+                            db = AndroidSuperApp.BL.GetBooksByParameters("supplier",mUser.getID(),"maxamount","0");
+                            break;
+                    }
+
+                    final ArrayList<HashMap<String, String>> BookList = new ArrayList<HashMap<String, String>>();
+
+                    for (int i = 0; i < db.size(); i++) {
+                        // creating new HashMap
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        Book b = db.get(i);
+
+                        // adding each child node to HashMap key => value
+                        map.put(KEY_B_ID, b.getID());
+                        map.put(KEY_B_TITLE, b.getBookName());
+                        map.put(KEY_B_WRITER, b.getWriterAsString());
+                        map.put(KEY_B_YEAR, String.valueOf(b.getYear()));
+                        map.put(KEY_B_THUMB_URL, b.getURL());
+
+                        // adding HashList to ArrayList
+                        BookList.add(map);
+                    }
+
+                    list=(ListView)rootView.findViewById(R.id.list_for_book);
+
+                    // Getting adapter by passing data ArrayList
+                    adapter = new BookDataAdapter(mAct,BookList);
+                    list.setAdapter(adapter);
+
+                    // Click event for single list row
+                    list.setOnItemClickListener(
+                            new AdapterView.OnItemClickListener()
+                            {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                    String BookId = BookList.get(position).get(KEY_B_ID);
+
+                                    Intent intent = new Intent(mCtx, ShowBookMain.class);
+                                    intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookId);
+                                    startActivity(intent);
+                                }
+                            });
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(mCtx, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
             return rootView;
         }
     }

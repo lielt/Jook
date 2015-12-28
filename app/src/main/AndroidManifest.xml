@@ -82,6 +82,8 @@
             android:label="@string/title_activity_cart"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity android:name=".jook.ShowBookForSupplier" >
+        </activity>
     </application>
 
 </manifest>

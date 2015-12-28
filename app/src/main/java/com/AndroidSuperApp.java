@@ -138,6 +138,11 @@ public class AndroidSuperApp extends Application {
 
         AndroidSuperApp.BL.addBookToSupplier(sp1);
         AndroidSuperApp.BL.addBookToSupplier(sp2);
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b2.getID(),10,(float)76.5));
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b4.getID(),2,(float)30));
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b6.getID(),5,(float)86));
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b8.getID(),0,(float)94));
+
 
         Recommendation r1 = new Recommendation(s1.getID(),b1.getID(),3,"אחלה של ספר");
 
