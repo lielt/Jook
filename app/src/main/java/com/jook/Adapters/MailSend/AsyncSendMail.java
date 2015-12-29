@@ -14,10 +14,10 @@ public class AsyncSendMail extends AsyncTask<String,Void,String>
         try
         {
             GMailSender sender = new GMailSender("jookmanager1@gmail.com", "12369091");
-            sender.sendMail("This is Subject",
-                    "This is Body",
-                    "jookmanager1@gmail.com",
-                    "liel71@gmail.com");
+            sender.sendMail("זהו מייל אוטומטי מהאפליקציה המטורפת jook שתחייה!!!!",
+                    "הידד!!!!!!",
+                    "jookAdmin@gmail.com",
+                    "ybcarmeli@gmail.com");
         }
         catch (Exception ex)
         {

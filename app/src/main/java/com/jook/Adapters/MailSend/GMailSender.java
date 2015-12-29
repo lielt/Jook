@@ -60,17 +60,49 @@ public class GMailSender extends javax.mail.Authenticator
 
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception
     {
-        MimeMessage message = new MimeMessage(session);
-        DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes()));
-        message.setSender(new InternetAddress(sender));
+//        MimeMessage message = new MimeMessage(session);
+//        DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
+//        message.setSender(new InternetAddress(sender));
+//        message.setSubject(subject);
+//
+//        message.setDataHandler(handler);
+//        message.setContent(_multipart);
+//        message.setFileName("dsd");
+//        if (recipients.indexOf(',') > 0)
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
+//        else
+//            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+//        Transport.send(message);
+
+        // Create a default MimeMessage object.
+        Message message = new MimeMessage(session);
+
+        // Set From: header field of the header.
+        message.setFrom(new InternetAddress(sender));
+
+        // Set To: header field of the header.
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(recipients));
+
+        // Set Subject: header field
         message.setSubject(subject);
 
-        message.setDataHandler(handler);
-        message.setContent(_multipart);
-        if (recipients.indexOf(',') > 0)
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
-        else
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+        // Create the message part
+        BodyPart messageBodyPart = new MimeBodyPart();
+
+        // Now set the actual message
+        messageBodyPart.setText(body);
+
+        // Create a multipar message
+        Multipart multipart = new MimeMultipart();
+
+        // Set text message part
+        multipart.addBodyPart(messageBodyPart);
+
+        // Send the complete message parts
+        message.setContent(multipart);
+
+        // Send message
         Transport.send(message);
 
     }
