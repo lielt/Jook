@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/command1" android:icon="@android:drawable/ic_menu_camera"
-            android:title="Import" />
-        <item android:id="@+id/nav_gallery" android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item android:id="@+id/nav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="מאגר הספרים" android:id="@+id/Books">
         <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
-                android:title="התנתק" />
+            <item android:id="@+id/RecCategoryMenu" android:title="מומלצים"/>
+            <item android:id="@+id/HolyCategoryMenu" android:title="קודש"/>
+            <item android:id="@+id/KidsCategoryMenu" android:title="ילדים"/>
+            <item android:id="@+id/historyCategoryMenu" android:title="היסטוריה"/>
+            <item android:id="@+id/ProCategoryMenu" android:title="ספרות מקצועית"/>
+        </menu>
+
+    </item>
+
+
+    <item android:title="ספקים" android:id="@+id/Sup" android:visible="false">
+        <menu>
+            <item android:id="@+id/AddBookMenu" android:title="הוספת ספר"/>
+            <item android:id="@+id/SupCartMenu" android:title="הזמנות שהתקבלו"/>
+            <item android:id="@+id/StockMenu" android:title="מלאי"/>
+        </menu>
+    </item>
+
+    <item android:title="לקוחות" android:id="@+id/Cus" android:visible="false">
+        <menu>
+            <item android:id="@+id/PreOrdersMenu" android:title="הזמנות קודמות"/>
+            <item android:id="@+id/CartMenu" android:title="עגלת קניות"/>
+        </menu>
+    </item>
+
+    <item android:title="ניהול אפליקציה" android:id="@+id/Manager" android:visible="false">
+        <menu>
+            <item android:id="@+id/UpdateUserMenu" android:title="ניהול משתמשים"/>
+            <item android:id="@+id/AddAdminMenu" android:title="הוסף מנהל"/>
+        </menu>
+    </item>
+
+    <item android:title="ניהול" android:id="@+id/Manage">
+        <menu>
+            <item android:id="@+id/AccountMenu" android:visible="false" android:title="פרטי חשבון"/>
+            <item android:id="@+id/login" android:visible="false" android:icon="@android:drawable/ic_menu_camera"
+                android:title="התחבר" />
+            <item android:id="@+id/logout" android:visible="false" android:icon="@android:drawable/ic_menu_camera"
+                android:title="התנתק"   />
+            <item android:id="@+id/exit" android:icon="@android:drawable/ic_menu_camera"
+                android:title="יציאה"   />
         </menu>
     </item>
 

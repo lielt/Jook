@@ -149,6 +149,7 @@ public class ShowBookMain extends AppCompatActivity
                                     Intent intent = new Intent(getBaseContext(), OrderPage.class);
                                     intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
                                     intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
+                                    intent.putExtra(OrderPage.NEW_UPDATE_FLAG,"new");
                                     startActivity(intent);
                                 }
 

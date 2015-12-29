@@ -52,6 +52,7 @@ public interface Backend
     public void AddOrder(Order order)throws Exception;
     public void UpdateOrder (Order order)throws Exception;
     public void DeleteOrder (Order order)throws Exception;
+    public Order GetOrderByID(String OrderID);
 
     public ArrayList<Book> GetAllBooks()throws Exception;
     //get books by parameters

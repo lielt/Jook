@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.backend.entities.Admin;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
+import com.backend.entities.Customer;
 import com.backend.entities.Name;
 import com.backend.entities.Recommendation;
 import com.backend.entities.Supplier;
@@ -14,10 +15,10 @@ import com.backend.entities.Supplier_Book;
 import com.backend.entities.User;
 import com.backend.enums.Category;
 import com.backend.enums.Level;
+import com.backend.enums.PayWay;
 import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
-import com.jook.Adapters.MailSend.AsyncSendMail;
 
 public class AndroidSuperApp extends Application {
 
@@ -42,9 +43,6 @@ public class AndroidSuperApp extends Application {
         {
             buildDefultDataBase();
             insertGuestMode();
-
-            new AsyncSendMail().execute();
-
         }
         catch (Exception ex)
         {
@@ -136,6 +134,15 @@ public class AndroidSuperApp extends Application {
         Supplier s1 = new Supplier("302724208","ליאל","צור","036959917","0523139051","LIEL71@GMAIL.COM","ברזיל","100","ירושלים","12369091",false,"הראל ספרים", Ship.CourierService,5);
         Supplier s2 = new Supplier("304901408","ידידאל","לוק","026589382","0524789621","Yedid@GMAIL.COM","פסגתזאב","100","ירושלים","56756",false,"הדר ספרים", Ship.CourierService,3);
 
+        Supplier s3 = new Supplier("302724210","ליאל","צור","036959917","0523139051","s","ברזיל","100","ירושלים","s",false,"הראל ספרים", Ship.CourierService,5);
+        Customer c1 = new Customer("302724220","ליאל","צור","036959917","0523139051","c","ברזיל","100","ירושלים","c",false, PayWay.Credit,"",0);
+        Admin a = new Admin("305062988","Hana","Tzur","036959981","0527560167","a","Brazil","100","Jerusalem","a",false, Level.Administrator);
+
+        BL.AddSupplier(s3);
+        BL.AddCustomer(c1);
+        BL.AddAdmin(a);
+
+
         AndroidSuperApp.BL.AddSupplier(s1);
         AndroidSuperApp.BL.AddSupplier(s2);
 
@@ -147,15 +154,14 @@ public class AndroidSuperApp extends Application {
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b2.getID(),10,(float)76.5));
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b4.getID(),2,(float)30));
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b6.getID(),5,(float)86));
-        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b8.getID(),0,(float)94));
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(), b8.getID(), 0, (float) 94));
 
 
         Recommendation r1 = new Recommendation(s1.getID(),b1.getID(),3,"אחלה של ספר");
 
         AndroidSuperApp.BL.AddRecommendation(r1);
 
-        Admin a = new Admin("305062988","Hana","Tzur","036959981","0527560167","h@g.com","Brazil","100","Jerusalem","a",false, Level.Administrator);
-        BL.AddAdmin(a);
+
 
     }
 

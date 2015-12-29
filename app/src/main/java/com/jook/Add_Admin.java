@@ -12,6 +12,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Admin;
 import com.backend.enums.Level;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 
 public class Add_Admin extends AppCompatActivity {
 
@@ -59,6 +60,8 @@ public class Add_Admin extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             AddUser.AddUserActivity.finish();
+
+            new AsyncSendMail().execute(newSup.getContactName().GetFullName(),"מנהל",newSup.getContactInfo().getEmail(),newSup.getApplicationPassword());
 
         }
         catch (Exception ex)

@@ -450,7 +450,6 @@ public class ListDS implements Backend, Serializable
         }
         else
             throw new Exception(getContex().getResources().getString(R.string.CartNotExistErr));
-        this.DeleteCart(cart);
     }
 
     private void DeleteCart(Cart cart) throws Exception
@@ -566,7 +565,7 @@ public class ListDS implements Backend, Serializable
 
     }
 
-    private Order GetOrderByID(String OrderID)
+    public Order GetOrderByID(String OrderID)
     {
         for (Order o : OrderList)
         {

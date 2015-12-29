@@ -12,6 +12,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Customer;
 import com.backend.enums.PayWay;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 
 import static com.backend.entities.SystemFunc.GetPayWay;
 
@@ -60,15 +61,8 @@ public class Add_Customer extends AppCompatActivity {
             finish();
             AddUser.AddUserActivity.finish();
 
-//            try {
-//                GMailSender sender = new GMailSender("jookmanager1@gmail.com", "12369091");
-//                sender.sendMail("This is Subject",
-//                        "This is Body",
-//                        "jookmanager1@gmail.com",
-//                        "liel71@gmail.com");
-//            } catch (Exception e) {
-//
-//            }
+            new AsyncSendMail().execute(newCus.getContactName().GetFullName(), "לקוח", newCus.getContactInfo().getEmail(), newCus.getApplicationPassword());
+
         }
         catch (Exception ex)
         {

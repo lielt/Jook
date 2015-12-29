@@ -12,6 +12,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Supplier;
 import com.backend.enums.Ship;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 
 import static com.backend.entities.SystemFunc.GetShip;
 
@@ -60,6 +61,8 @@ public class Add_Supplier extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             AddUser.AddUserActivity.finish();
+
+            new AsyncSendMail().execute(newSup.getContactName().GetFullName(), "ספק", newSup.getContactInfo().getEmail(), newSup.getApplicationPassword());
 
         }
         catch (Exception ex)

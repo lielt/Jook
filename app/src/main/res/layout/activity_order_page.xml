@@ -396,7 +396,8 @@
                 android:layout_height="wrap_content"
                 android:text="הוסף לעגלה"
                 android:layout_margin="4dp"
-                android:background="#3861f7" />
+                android:background="#3861f7"
+                android:onClick="MakeOrder"/>
         </LinearLayout>
     </ScrollView>
 

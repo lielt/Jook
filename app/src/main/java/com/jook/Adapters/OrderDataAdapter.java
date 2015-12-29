@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import static com.backend.entities.SystemFunc.*;
+
 import com.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.backend.entities.SystemFunc.tryParseFloat;
+import static com.backend.entities.SystemFunc.tryParseInt;
 
 /**
  * Created by יוסי on 27/12/2015.
@@ -21,6 +24,10 @@ public class OrderDataAdapter extends BaseAdapter {
     public static final String KEY_SUPPLIER_NAME="supplierName";
     public static final String KEY_AMOUNT="amount";
     public static final String KEY_PRICE="price";
+    public static final String KEY_BOOK_ID="bid";
+    public static final String KEY_SUP_ID="sid";
+    public static final String KEY_ORDER_ID="oid";
+
 
     private Activity activity;
     private ArrayList<HashMap<String, String>> data;

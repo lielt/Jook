@@ -21,6 +21,8 @@ public class OrderPage extends AppCompatActivity {
 
     public static String BOOK_ID = "bid";
     public static String SUP_ID = "sid";
+    public static String ORDER_ID = "oid";
+    public static String NEW_UPDATE_FLAG = "flag";
 
     public ImageLoader imageLoader;
 
@@ -49,8 +51,18 @@ public class OrderPage extends AppCompatActivity {
 
             myBook = AndroidSuperApp.BL.GetBooksByParameters("id",bookID).get(0);
             mySupplier = AndroidSuperApp.BL.GetSupplierByID(SupplierID);
-            mySupplierBook = AndroidSuperApp.BL.GetSupplierBook(bookID,SupplierID);
-            myOrder = new Order("",AndroidSuperApp.CurrAppCart.getID(),SupplierID,bookID,1);
+            mySupplierBook = AndroidSuperApp.BL.GetSupplierBook(bookID, SupplierID);
+
+            Intent mIntent = getIntent();
+            String flag = mIntent.getStringExtra(NEW_UPDATE_FLAG);
+            if (flag.equals("new"))
+                myOrder = new Order("",AndroidSuperApp.CurrAppCart.getID(),SupplierID,bookID,1);
+            else
+            {
+                myOrder = AndroidSuperApp.BL.GetOrderByID(mIntent.getStringExtra(ORDER_ID));
+            }
+
+
 
             ///////////////////////////////////////////////////
 
@@ -119,4 +131,29 @@ public class OrderPage extends AppCompatActivity {
         }
 
     }
+
+    public void MakeOrder(View view)
+    {
+        try
+        {
+            Intent mIntent = getIntent();
+            String flag = mIntent.getStringExtra(NEW_UPDATE_FLAG);
+            if (flag.equals("new"))
+                AndroidSuperApp.BL.AddOrder(myOrder);
+            else
+            {
+                AndroidSuperApp.BL.UpdateOrder(myOrder);
+            }
+
+
+            Toast.makeText(OrderPage.this, "הזמנה נוספה בהצלחה", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this,CartActivity.class));
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(OrderPage.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+    }
+
 }

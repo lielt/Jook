@@ -21,6 +21,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
 import com.backend.enums.Category;
+import com.backend.enums.Privilege;
 import com.jook.DownloadImageFromNetTools.ImageLoaderForBorrunView;
 
 import java.util.ArrayList;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        ////////////////////////////////////////////////////////////////
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,11 +62,40 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-
-
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //////////////////////////////////////////////////////////////////////////////
+
+        if (AndroidSuperApp.CurrAppUser == null)
+        {
+            String s = "sdfdsf";
+        }
+
+        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
+        {
+            navigationView.getMenu().findItem(R.id.login).setVisible(true);
+        }
+        else
+        {
+            navigationView.getMenu().findItem(R.id.login).setVisible(true);
+            switch (AndroidSuperApp.CurrAppUser.getPrivilege())
+            {
+                case Customer:
+                    navigationView.getMenu().findItem(R.id.Cus).setVisible(true);
+                    break;
+                case Supplier:
+                    navigationView.getMenu().findItem(R.id.Sup).setVisible(true);
+                    break;
+                case OnlyAdmin:
+                    navigationView.getMenu().findItem(R.id.Manager).setVisible(true);
+                    break;
+            }
+        }
+
+
+
+
 
         /////////////////////////////////////// My Code Add ////////////////////////////////////////
 
@@ -434,29 +467,64 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.command1) {
+
+        if (id == R.id.RecCategoryMenu) {
+            Intent intent = new Intent(this,ShowAllBooksInCategory.class);
+            intent.putExtra(KEY_FILTER,"all");
+            startActivity(intent);
+        } else if (id == R.id.HolyCategoryMenu) {
+            Intent intent = new Intent(this,ShowAllBooksInCategory.class);
+            intent.putExtra(KEY_FILTER,Category.Holy.toString());
+            startActivity(intent);
+        } else if (id == R.id.KidsCategoryMenu) {
+            Intent intent = new Intent(this,ShowAllBooksInCategory.class);
+            intent.putExtra(KEY_FILTER, Category.Children.toString());
+            startActivity(intent);
+        } else if (id == R.id.historyCategoryMenu) {
+            Intent intent = new Intent(this,ShowAllBooksInCategory.class);
+            intent.putExtra(KEY_FILTER,Category.History.toString());
+            startActivity(intent);
+        } else if (id == R.id.ProCategoryMenu) {
+            Intent intent = new Intent(this,ShowAllBooksInCategory.class);
+            intent.putExtra(KEY_FILTER,Category.Professional.toString());
+            startActivity(intent);
+        } else if (id == R.id.AddBookMenu) {
+            startActivity(new Intent(this,AddBook.class));
+        } else if (id == R.id.SupCartMenu) {
+
+        } else if (id == R.id.StockMenu) {
             startActivity(new Intent(this,Stock.class));
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.PreOrdersMenu) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.CartMenu) {
+            startActivity(new Intent(this, CartActivity.class));
+        } else if (id == R.id.UpdateUserMenu) {
 
-        } else if (id == R.id.nav_manage) {
+        }else if (id == R.id.AddAdminMenu) {
+            startActivity(new Intent(this,AddUser.class));
+        }else if (id == R.id.AccountMenu) {
 
-        } else if (id == R.id.nav_share) {
-
+        }else if (id == R.id.login) {
+            startActivity(new Intent(this, com.jook.Login_Screen.class));
         }
-        else if (id == R.id.nav_send)
+        else if (id == R.id.logout)
         {
             AndroidSuperApp.onLogOut();
             Toast.makeText(MainActivity.this, "משתמש התנתק בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
+        }
+        else if (id == R.id.exit)
+        {
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
