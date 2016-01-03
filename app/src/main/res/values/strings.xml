@@ -122,6 +122,7 @@
     <string name="title_activity_cart">עגלה</string>
     <string name="title_activity_stock">Stock</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="makeInvite">בצע הזמנה</string>
 
 
 </resources>
