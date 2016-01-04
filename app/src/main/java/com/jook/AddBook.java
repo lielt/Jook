@@ -47,6 +47,7 @@ public class AddBook extends AppCompatActivity {
         String WriterFname= (((EditText)findViewById(R.id.get_writer_family_name)).getText()).toString();
         String Publisher= (((EditText)findViewById(R.id.get_publisher)).getText()).toString();
         String PublishYear= (((EditText)findViewById(R.id.get_publish_year)).getText()).toString();
+
         int pYear=0;
         if (tryParseInt(PublishYear)) {
             pYear = Integer.parseInt(PublishYear);
@@ -55,6 +56,7 @@ public class AddBook extends AppCompatActivity {
         Category category=GetCategory(Category);
         boolean ThickCover=((Switch)findViewById(R.id.get_binding)).isChecked();
         String Url=(((EditText)findViewById(R.id.get_picture_url)).getText()).toString();
+
         try {
             Book newbook = new Book(id, Name, new Name(WriterPname, WriterFname),Publisher,ThickCover,pYear,category,Url );
             AndroidSuperApp.BL.AddBook(newbook);

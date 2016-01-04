@@ -106,17 +106,6 @@ public class ListDS implements Backend, Serializable
     }
 
     @Override
-    public void AddBook(Book book, Supplier_Book supBook) throws Exception {
-        if (GetEditableSupplierByID(supBook.getSupplierID())!=null)//check if the supplier exist
-        {
-            this.AddBook(book);
-            this.AddSupplier_Book(supBook);
-        }
-        else
-            throw  new Exception(getContex().getString(R.string.BookNoSupErr));
-    }
-
-    @Override
     public void UpdateBook(Book book) throws Exception {
 
         Book MyBook = SearchBookByID(book.getID());

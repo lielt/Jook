@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
+import com.backend.entities.User;
+import com.backend.enums.Privilege;
 
 public class Login_Screen extends AppCompatActivity {
 
@@ -51,8 +53,17 @@ public class Login_Screen extends AppCompatActivity {
 
     public void log_scrren_guest(View view)
     {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+        try {
+            AndroidSuperApp.CurrAppUser = new User("0","guest","guset","030001111","0521231234","test@gmail.com","null","1","null","",false);
+            AndroidSuperApp.CurrAppUser.setPrivilege(Privilege.Guest);
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(Login_Screen.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

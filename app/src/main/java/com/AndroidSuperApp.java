@@ -16,7 +16,6 @@ import com.backend.entities.User;
 import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
-import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
 
@@ -95,9 +94,6 @@ public class AndroidSuperApp extends Application {
         CurrAppCart = new Cart();
         CurrAppCart.setCustomerID("000000000");
         CurrAppCart.setID("");
-
-        CurrAppUser = new User("0","guest","guset","030001111","0521231234","test@gmail.com","null","1","null","",false);
-        CurrAppUser.setPrivilege(Privilege.Guest);
     }
 
 

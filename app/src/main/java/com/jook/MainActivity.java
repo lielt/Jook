@@ -67,10 +67,6 @@ public class MainActivity extends AppCompatActivity
 
         //////////////////////////////////////////////////////////////////////////////
 
-        if (AndroidSuperApp.CurrAppUser == null)
-        {
-            String s = "sdfdsf";
-        }
 
         if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
         {
@@ -78,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-            navigationView.getMenu().findItem(R.id.login).setVisible(true);
+            navigationView.getMenu().findItem(R.id.logout).setVisible(true);
             switch (AndroidSuperApp.CurrAppUser.getPrivilege())
             {
                 case Customer:

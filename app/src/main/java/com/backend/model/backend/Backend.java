@@ -13,8 +13,7 @@ public interface Backend
 
     //add book
     public void AddBook(Book book)throws Exception;
-    //add book by supplier
-    public void AddBook(Book book, Supplier_Book supBook)throws Exception;
+
     public void UpdateBook (Book book) throws Exception;
     public void DeleteBook (Book book)throws Exception;
 
