@@ -11,9 +11,11 @@ public class AsyncGetDataFromSQL extends AsyncTask<String,Void,String>
     @Override
     protected String doInBackground(String... params)
     {
-        try {
-            String test = com.backend.model.datasource.SqlDS.GET("https://jookdb-liel7.c9users.io/sqlQuery.php");
-            String t = "test";
+        try
+        {
+            // params[0] = get/set
+            // params[1] = query
+
         }
         catch (Exception ex)
         {
