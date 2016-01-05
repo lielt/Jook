@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.AndroidSuperApp;
@@ -17,6 +18,7 @@ import com.backend.entities.Book;
 import com.backend.entities.Cart;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
+import com.backend.entities.Supplier_Book;
 import com.jook.Adapters.OrderDataAdapter;
 
 import java.util.ArrayList;
@@ -91,6 +93,9 @@ public class CartActivity extends AppCompatActivity {
                     }
                 });
             }
+            TextView pay=(TextView) findViewById(R.id.payment);
+            Cart cart2=AndroidSuperApp.BL.DiscountPolicy(cart);
+            pay.setText(String.valueOf(cart2.getTotalPrice()));
 
 
         }
@@ -99,4 +104,28 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+    public void invite(View view) {
+        int j=AndroidSuperApp.CurrAppCart.getNumOfOrders();
+        ArrayList<Order> spList= AndroidSuperApp.BL.GetAllCartOrders(AndroidSuperApp.CurrAppCart.getID());
+        for (int i=0;i<j;i++)
+        {
+            Supplier_Book sb=AndroidSuperApp.BL.GetSupplierBook(spList.get(i).getBookId(), spList.get(i).getSupplierId());
+            try {
+                sb.setAmount(sb.getAmount()-spList.get(i).getAmount());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        //send mail
+        Toast.makeText(CartActivity.this, "ההזמנה בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
+
+        AndroidSuperApp.CurrAppCart = new Cart();
+        try {
+            AndroidSuperApp.CurrAppCart.setCustomerID(AndroidSuperApp.CurrAppUser.getID());
+            AndroidSuperApp.BL.AddCart(AndroidSuperApp.CurrAppCart);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
