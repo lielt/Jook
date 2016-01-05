@@ -17,6 +17,7 @@ import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
+import com.backend.model.datasource.AsyncGetDataFromSQL;
 import com.backend.model.datasource.ListDS;
 
 public class AndroidSuperApp extends Application {
@@ -42,6 +43,9 @@ public class AndroidSuperApp extends Application {
         {
             buildDefultDataBase();
             insertGuestMode();
+
+            new AsyncGetDataFromSQL().execute();
+
         }
         catch (Exception ex)
         {
