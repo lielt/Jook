@@ -23,6 +23,8 @@ public class OrderPage extends AppCompatActivity {
     public static String SUP_ID = "sid";
     public static String ORDER_ID = "oid";
     public static String NEW_UPDATE_FLAG = "flag";
+    public static String Sender = "sender";
+
 
     public ImageLoader imageLoader;
 
@@ -147,7 +149,13 @@ public class OrderPage extends AppCompatActivity {
 
 
             Toast.makeText(OrderPage.this, "הזמנה נוספה בהצלחה", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this,CartActivity.class));
+            startActivity(new Intent(this, CartActivity.class));
+            finish();
+            if (getIntent().getStringExtra(Sender).equals("cart"))
+                CartActivity.cartAct.finish();
+            else
+                ShowBookMain.SBMact.finish();
+
         }
         catch (Exception ex)
         {

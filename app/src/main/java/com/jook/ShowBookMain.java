@@ -1,5 +1,6 @@
 package com.jook;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class ShowBookMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String KEY_BOOK_ID = "bookID";
+    public static Activity SBMact;
 
     public ImageLoader imageLoader;
     Book CurrBook;
@@ -47,6 +49,8 @@ public class ShowBookMain extends AppCompatActivity
         setContentView(R.layout.activity_show_book_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SBMact=this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier))
