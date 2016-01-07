@@ -103,23 +103,35 @@ public class SqlDS implements Backend
         public DataLoadFromWeb()
         {
             isInLoad = true;
+            arrayList = new ArrayList<T>();
+            ex=null;
         }
     }
 
     public SqlDS()
     {
-        dataList.add(new DataLoadFromWeb<Admin>() );
-        dataList.add(new DataLoadFromWeb<Book>() );
-        dataList.add(new DataLoadFromWeb<Cart>() );
-        dataList.add(new DataLoadFromWeb<Customer>() );
-        dataList.add(new DataLoadFromWeb<Recommendation>() );
-        dataList.add(new DataLoadFromWeb<Supplier>() );
-        dataList.add(new DataLoadFromWeb<Supplier_Book>() );
+        dataList = new ArrayList<DataLoadFromWeb>();
+        try {
+            dataList.add(new DataLoadFromWeb<Admin>() );
+            dataList.add(new DataLoadFromWeb<Book>() );
+            dataList.add(new DataLoadFromWeb<Cart>() );
+            dataList.add(new DataLoadFromWeb<Customer>() );
+            dataList.add(new DataLoadFromWeb<Recommendation>() );
+            dataList.add(new DataLoadFromWeb<Supplier>() );
+            dataList.add(new DataLoadFromWeb<Supplier_Book>() );
+        }
+        catch (Exception ex)
+        {
+            String asd ="asdasd";
+            String asdasd= asd;
+        }
+
 
         // get all arrays
+        new AsyncGetDataFromSQL(this).execute("get");
 
         // chackDownloadState
-        while (dataList.get(0).isInLoad  && dataList.get(1).isInLoad  && dataList.get(2).isInLoad  && dataList.get(3).isInLoad  && dataList.get(4).isInLoad  && dataList.get(5).isInLoad  && dataList.get(6).isInLoad)
+        while (dataList.get(0).isInLoad  || dataList.get(1).isInLoad  || dataList.get(2).isInLoad  || dataList.get(3).isInLoad  || dataList.get(4).isInLoad  || dataList.get(5).isInLoad  || dataList.get(6).isInLoad)
         {
             try {
                 Thread.sleep(1000);
