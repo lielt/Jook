@@ -39,19 +39,36 @@ public class ListDS implements Backend, Serializable
 
 
 
-    public ListDS()
+    public ListDS(SqlDS BaseSQLDS)
     {
-        BookList = new ArrayList<Book>();
-        CustomerList = new ArrayList<Customer>();
-        RecommendationList = new ArrayList<Recommendation>();
-        SupplierList = new ArrayList<Supplier>();
-        SupplierBookList = new ArrayList<Supplier_Book>();
-        AdminList = new ArrayList<Admin>();
-        CartList = new ArrayList<Cart>();
-        OrderList = new ArrayList<Order>();
+        if (BaseSQLDS == null)
+        {
+            BookList = new ArrayList<Book>();
+            CustomerList = new ArrayList<Customer>();
+            RecommendationList = new ArrayList<Recommendation>();
+            SupplierList = new ArrayList<Supplier>();
+            SupplierBookList = new ArrayList<Supplier_Book>();
+            AdminList = new ArrayList<Admin>();
+            CartList = new ArrayList<Cart>();
+            OrderList = new ArrayList<Order>();
 
-        //id's for the serial number of cart/order
-        CartRunID = this.GenerateRunCartID();
+            CartRunID = this.GenerateRunCartID();
+        }
+        else
+        {
+            AdminList = BaseSQLDS.dataList.get(0).arrayList;
+            BookList = BaseSQLDS.dataList.get(1).arrayList;
+            CartList = BaseSQLDS.dataList.get(2).arrayList;
+            CustomerList = BaseSQLDS.dataList.get(3).arrayList;
+            RecommendationList = BaseSQLDS.dataList.get(4).arrayList;
+            SupplierList = BaseSQLDS.dataList.get(5).arrayList;
+            SupplierBookList = BaseSQLDS.dataList.get(6).arrayList;
+            OrderList = new ArrayList<Order>();
+
+            CartRunID  = BaseSQLDS.dataList.get(2).Result;
+            this.CartIDNext();
+        }
+
         OrderRunID = this.GenerateRunOrderID();
     }
 
@@ -110,7 +127,6 @@ public class ListDS implements Backend, Serializable
     public void UpdateBook(Book book) throws Exception {
 
         Book MyBook = SearchBookByID(book.getID());
-
 
         if (MyBook==null)
             throw new Exception(getContex().getResources().getString(R.string.BookNotFoundErr));
@@ -432,11 +448,10 @@ public class ListDS implements Backend, Serializable
     public void UpdateCart(Cart cart) throws Exception
     {
         Cart c = GetCartByID(cart.getID());
-
         if (c != null)
         {
-            CartList.remove(c);
-            CartList.add(DiscountPolicy(cart));
+            if (CartList.remove(c))
+                CartList.add(DiscountPolicy(cart));
         }
         else
             throw new Exception(getContex().getResources().getString(R.string.CartNotExistErr));

@@ -17,8 +17,8 @@ import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
-import com.backend.model.datasource.AsyncGetDataFromSQL;
 import com.backend.model.datasource.ListDS;
+import com.backend.model.datasource.SqlDS;
 
 public class AndroidSuperApp extends Application {
 
@@ -38,13 +38,19 @@ public class AndroidSuperApp extends Application {
         super.onCreate();
         singleton = this;
         ctx = this;
-        BL = new ListDS();
+        BL = new ListDS(null);
         try
         {
             buildDefultDataBase();
             insertGuestMode();
 
-            new AsyncGetDataFromSQL().execute();
+            Book book = new Book("JB1","Little Man of Disneyland",new Name("RH","Disney"),"Walt Disney Studio",true,2014, Category.Children,"http://ecx.images-amazon.com/images/I/51JaMP38SaL._SY160_.jpg");
+            SqlDS sql = new SqlDS();
+            //BL.AddBook(book);
+            //sql.AddBook(book);
+            book.setYear(2016);
+            sql.UpdateBook(book);
+            sql.DeleteBook(book);
 
         }
         catch (Exception ex)
@@ -117,7 +123,7 @@ public class AndroidSuperApp extends Application {
         Book b12 = new Book("JB12","ספרד",new Name("צור","אסולין"),"דותן",true,2008, Category.Professional,"http://api.androidhive.info/music/images/alexi_murdoch.png");
 
 
-        AndroidSuperApp.BL.AddBook(b1);
+        //AndroidSuperApp.BL.AddBook(b1);
         AndroidSuperApp.BL.AddBook(b2);
         AndroidSuperApp.BL.AddBook(b3);
         AndroidSuperApp.BL.AddBook(b4);
@@ -146,12 +152,12 @@ public class AndroidSuperApp extends Application {
         AndroidSuperApp.BL.AddSupplier(s1);
         AndroidSuperApp.BL.AddSupplier(s2);
 
-        Supplier_Book sp1 = new Supplier_Book(s1.getID(),b1.getID(),4,(float)82.5);
-        Supplier_Book sp2 = new Supplier_Book(s2.getID(),b1.getID(),4,(float)100);
+        Supplier_Book sp1 = new Supplier_Book(s1.getID(),b2.getID(),4,(float)82.5);
+        Supplier_Book sp2 = new Supplier_Book(s2.getID(),b2.getID(),4,(float)100);
 
         AndroidSuperApp.BL.addBookToSupplier(sp1);
         AndroidSuperApp.BL.addBookToSupplier(sp2);
-        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b2.getID(),10,(float)76.5));
+        AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b7.getID(),10,(float)76.5));
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b4.getID(),2,(float)30));
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(),b6.getID(),5,(float)86));
         AndroidSuperApp.BL.addBookToSupplier(new Supplier_Book(s1.getID(), b8.getID(), 0, (float) 94));
