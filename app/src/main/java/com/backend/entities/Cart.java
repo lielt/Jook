@@ -15,6 +15,18 @@ public class Cart
     private int NumOfOrders;
     private float OriginalPrice;
 
+    public Cart() {
+    }
+
+    public Cart(String ID, String customerID, float totalPrice, int discountPrecent, int numOfOrders, float originalPrice) {
+        this.ID = ID;
+        CustomerID = customerID;
+        TotalPrice = totalPrice;
+        DiscountPrecent = discountPrecent;
+        NumOfOrders = numOfOrders;
+        OriginalPrice = originalPrice;
+    }
+
     public String getID() {
         return ID;
     }

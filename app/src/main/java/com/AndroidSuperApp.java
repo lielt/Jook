@@ -18,7 +18,6 @@ import com.backend.enums.Level;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
 import com.backend.model.datasource.ListDS;
-import com.backend.model.datasource.SqlDS;
 
 public class AndroidSuperApp extends Application {
 
@@ -44,13 +43,13 @@ public class AndroidSuperApp extends Application {
             buildDefultDataBase();
             insertGuestMode();
 
-            Book book = new Book("JB1","Little Man of Disneyland",new Name("RH","Disney"),"Walt Disney Studio",true,2014, Category.Children,"http://ecx.images-amazon.com/images/I/51JaMP38SaL._SY160_.jpg");
-            SqlDS sql = new SqlDS();
-            //BL.AddBook(book);
-            //sql.AddBook(book);
-            book.setYear(2016);
-            sql.UpdateBook(book);
-            sql.DeleteBook(book);
+            //Book book = new Book("JB1","Little Man of Disneyland",new Name("RH","Disney"),"Walt Disney Studio",true,2014, Category.Children,"http://ecx.images-amazon.com/images/I/51JaMP38SaL._SY160_.jpg");
+            //SqlDS sql = new SqlDS();
+//            //BL.AddBook(book);
+//            //sql.AddBook(book);
+//            book.setYear(2016);
+//            sql.UpdateBook(book);
+//            sql.DeleteBook(book);
 
         }
         catch (Exception ex)
@@ -123,7 +122,7 @@ public class AndroidSuperApp extends Application {
         Book b12 = new Book("JB12","ספרד",new Name("צור","אסולין"),"דותן",true,2008, Category.Professional,"http://api.androidhive.info/music/images/alexi_murdoch.png");
 
 
-        //AndroidSuperApp.BL.AddBook(b1);
+        AndroidSuperApp.BL.AddBook(b1);
         AndroidSuperApp.BL.AddBook(b2);
         AndroidSuperApp.BL.AddBook(b3);
         AndroidSuperApp.BL.AddBook(b4);
@@ -152,7 +151,7 @@ public class AndroidSuperApp extends Application {
         AndroidSuperApp.BL.AddSupplier(s1);
         AndroidSuperApp.BL.AddSupplier(s2);
 
-        Supplier_Book sp1 = new Supplier_Book(s1.getID(),b2.getID(),4,(float)82.5);
+        Supplier_Book sp1 = new Supplier_Book(s1.getID(),b1.getID(),4,(float)82.5);
         Supplier_Book sp2 = new Supplier_Book(s2.getID(),b2.getID(),4,(float)100);
 
         AndroidSuperApp.BL.addBookToSupplier(sp1);

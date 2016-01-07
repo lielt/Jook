@@ -3,7 +3,7 @@ package com.backend.model.datasource;
 /**
  * Created by ליאל on 04/01/2016.
  */
-public class Sql_Schema_Const_values
+public final class Sql_Schema_Const_values
 {
 //    private String ID;
 //    private String BookName;
@@ -14,16 +14,17 @@ public class Sql_Schema_Const_values
 //    private com.backend.enums.Category Category;
 //    private String URL;
 
+
     // Book Table
-    public static String ID = "id";
-    public static String BookName = "name";
-    public static String Writerf = "writer_f_name";
-    public static String Writerl = "writer_l_name";
-    public static String Publisher = "publisher";
-    public static String ThickCover = "thick_cover";
-    public static String Year = "year";
-    public static String Category = "category";
-    public static String URL = "url";
+    public static String BOOK_ID = "id";
+    public static String BOOK_BookName = "name";
+    public static String BOOK_Writerf = "writer_f_name";
+    public static String BOOK_Writerl = "writer_l_name";
+    public static String BOOK_Publisher = "publisher";
+    public static String BOOK_ThickCover = "thick_cover";
+    public static String BOOK_Year = "year";
+    public static String BOOK_Category = "category";
+    public static String BOOK_URL = "url";
 
 
 //    private String CustomerID;
@@ -33,11 +34,11 @@ public class Sql_Schema_Const_values
 //    private float OriginalPrice;
 
     // Cart Table
-    public static String CustomerID = "CustomerID";
-    public static String TotalPrice = "TotalPrice";
-    public static String DiscountPrecent = "DiscountPrecent";
-    public static String NumOfOrders = "NumOfOrders";
-    public static String OriginalPrice = "OriginalPrice";
+    public static String CART_CustomerID = "CustomerID";
+    public static String CART_TotalPrice = "TotalPrice";
+    public static String CART_DiscountPrecent = "DiscountPrecent";
+    public static String CART_NumOfOrders = "NumOfOrders";
+    public static String CART_OriginalPrice = "OriginalPrice";
 
 
 
@@ -56,19 +57,19 @@ public class Sql_Schema_Const_values
 
     // Admin Table
     // UserData
-//    public static String ID = "id";
-    public static String firstName = "firstName";
-    public static String lastName = "lastName";
-    public static String phone = "phone";
-    public static String cellPhone = "cellPhone";
-    public static String email = "email";
-    public static String street = "street";
-    public static String num = "num";
-    public static String city = "city";
-    public static String applicationPassword = "applicationPassword";
-    public static String block = "block";
+    public static String ADMIN_ID = "id";
+    public static String ADMIN_firstName = "firstName";
+    public static String ADMIN_lastName = "lastName";
+    public static String ADMIN_phone = "phone";
+    public static String ADMIN_cellPhone = "cellPhone";
+    public static String ADMIN_email = "email";
+    public static String ADMIN_street = "street";
+    public static String ADMIN_num = "num";
+    public static String ADMIN_city = "city";
+    public static String ADMIN_applicationPassword = "applicationPassword";
+    public static String ADMIN_block = "block";
     // AdminData
-    public static String level = "level";
+    public static String ADMIN_level = "level";
 
 
 //    private PayWay PaymentMethod;
@@ -76,9 +77,9 @@ public class Sql_Schema_Const_values
 //    private int NumOfRecommends;
 
     // Customer Table
-    public static String PaymentMethod = "PaymentMethod";
-    public static String RecommendedBy = "RecommendedBy";
-    public static String NumOfRecommends = "NumOfRecommends";
+    public static String Customer_PaymentMethod = "PaymentMethod";
+    public static String Customer_RecommendedBy = "RecommendedBy";
+    public static String Customer_NumOfRecommends = "NumOfRecommends";
 
 
 //    private String CartId;
