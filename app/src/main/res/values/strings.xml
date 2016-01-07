@@ -123,6 +123,9 @@
     <string name="title_activity_stock">Stock</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="makeInvite">בצע הזמנה</string>
+    <string name="cartNumber">מספר עגלה</string>
+    <string name="numOfInvites">מספר הזמנות</string>
+    <string name="totalPrice">לתשלום</string>
 
 
 </resources>
