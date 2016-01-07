@@ -29,12 +29,18 @@ public class CartActivity extends AppCompatActivity {
 
     public static Activity cartAct;
 
+    public static final String KEY_CART_ID="cid";
+    public static final String KEY_FLAG="flag";
+
+    Intent preIntent;
+    String flag;
     ArrayList<HashMap<String, String>> orderList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+        preIntent=getIntent();
+        flag=preIntent.getStringExtra(KEY_FLAG);
         cartAct = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -51,8 +57,14 @@ public class CartActivity extends AppCompatActivity {
         try
         {
             Cart cart=AndroidSuperApp.CurrAppCart;
-
-            ArrayList<Order> spList= AndroidSuperApp.BL.GetAllCartOrders(cart.getID());
+            ArrayList<Order> spList;
+            if (flag.equals("new")) {
+                 spList = AndroidSuperApp.BL.GetAllCartOrders(cart.getID());
+            }
+            else
+            {
+                spList = AndroidSuperApp.BL.GetAllCartOrders(preIntent.getStringExtra(KEY_CART_ID));
+            }
             orderList = new ArrayList<HashMap<String, String>>();
 
             if (spList.size()>0)

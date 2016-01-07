@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/inviteNumber"
+            android:id="@+id/invitesNumber"
             android:text="@string/one"
             android:textColor="#040404"
             android:typeface="sans"

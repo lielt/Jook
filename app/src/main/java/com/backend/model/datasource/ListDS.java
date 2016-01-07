@@ -936,4 +936,18 @@ public class ListDS implements Backend, Serializable
        Supplier_Book sb=GetSupplierBook(BookID,SupID);
        return sb.getPrice();
    }
+
+    public ArrayList<Cart> GetAllCustomerCarts(String CustomerID)
+    {
+        ArrayList<Cart> Result = new ArrayList<Cart>();
+
+        for (Cart c : CartList)
+        {
+            if (c.getCustomerID().equals(CustomerID))
+                Result.add(c);
+        }
+
+        return new ArrayList<Cart>(Result);
+    }
+
 }

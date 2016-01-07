@@ -147,9 +147,11 @@ public class OrderPage extends AppCompatActivity {
                 AndroidSuperApp.BL.UpdateOrder(myOrder);
             }
 
-
+            String flag1="new";
+            Intent intent=new Intent(this, CartActivity.class);
+            intent.putExtra(CartActivity.KEY_FLAG, flag1);
             Toast.makeText(OrderPage.this, "הזמנה נוספה בהצלחה", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, CartActivity.class));
+            startActivity(intent);
             finish();
             if (getIntent().getStringExtra(Sender).equals("cart"))
                 CartActivity.cartAct.finish();
