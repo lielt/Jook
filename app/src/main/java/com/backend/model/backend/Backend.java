@@ -69,4 +69,7 @@ public interface Backend
     //calculate the discount to the specific cart
     public Cart DiscountPolicy(Cart cart) throws Exception;
 
+    public float GetBookPrice(String SupID,String BookID);
+    public ArrayList<Cart> GetAllCustomerCarts(String CustomerID);
+
 }

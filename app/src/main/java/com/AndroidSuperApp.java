@@ -17,13 +17,13 @@ import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
 import com.backend.enums.Ship;
-import com.backend.model.datasource.ListDS;
+import com.backend.model.backend.Backend;
 
 public class AndroidSuperApp extends Application {
 
     private static AndroidSuperApp singleton;
 
-    public static ListDS BL = null;
+    public static Backend BL = null;
     private static Context ctx;
     public static User CurrAppUser;
     public static Cart CurrAppCart;
@@ -37,19 +37,11 @@ public class AndroidSuperApp extends Application {
         super.onCreate();
         singleton = this;
         ctx = this;
-        BL = new ListDS(null);
+        //BL = new ListDS(null);
         try
         {
-            buildDefultDataBase();
+            //buildDefultDataBase();
             insertGuestMode();
-
-            //Book book = new Book("JB1","Little Man of Disneyland",new Name("RH","Disney"),"Walt Disney Studio",true,2014, Category.Children,"http://ecx.images-amazon.com/images/I/51JaMP38SaL._SY160_.jpg");
-            //SqlDS sql = new SqlDS();
-//            //BL.AddBook(book);
-//            //sql.AddBook(book);
-//            book.setYear(2016);
-//            sql.UpdateBook(book);
-//            sql.DeleteBook(book);
 
         }
         catch (Exception ex)

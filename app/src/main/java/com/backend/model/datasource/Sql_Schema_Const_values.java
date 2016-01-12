@@ -98,17 +98,18 @@ public final class Sql_Schema_Const_values
 //    private int Rate;
 //    private String Content;
 
-    public static String IDRecomends = "IDRecomends";
-    public static String IDRecomended = "IDRecomended";
-    public static String Rate = "Rate";
-    public static String Content = "Content";
+    public static String REC_IDRecomends = "IDRecomends";
+    public static String REC_IDRecomended = "IDRecomended";
+    public static String REC_Rate = "Rate";
+    public static String REC_Content = "Content";
 
 //    private String BusinessName;
 //    private Ship ShippingMethod;
 //    private int Rate;
 
-    public static String BusinessName = "BusinessName";
-    public static String ShippingMethod = "ShippingMethod";
+    public static String SUP_BusinessName = "BusinessName";
+    public static String SUP_ShippingMethod = "ShippingMethod";
+    public static String SUP_Rate = "Rate";
 
 
 //    private String SupplierID;
@@ -116,10 +117,10 @@ public final class Sql_Schema_Const_values
 //    private int Amount;
 //    private float Price;
 
-    public static String SupplierID = "SupplierID";
-    public static String BookID = "BookID";
-//    public static String Amount = "Amount";
-    public static String Price = "Price";
+    public static String SB_SupplierID = "SupplierID";
+    public static String SB_BookID = "BookID";
+    public static String SB_Amount = "Amount";
+    public static String SB_Price = "Price";
 
 
 

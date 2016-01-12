@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         //////////////////////////////////////////////////////////////////////////////
 
-
+        try {
         if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
         {
             navigationView.getMenu().findItem(R.id.login).setVisible(true);
@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         rec3.setVisibility(View.GONE);
 
         ArrayList<Book> allBooks = AndroidSuperApp.BL.GetAllBooks();
+
         Random random = new Random();
 
         ImageLoaderForBorrunView imageLoader = new ImageLoaderForBorrunView(this);
@@ -176,11 +177,7 @@ public class MainActivity extends AppCompatActivity
         TextView holy3writer = (TextView)findViewById(R.id.holy3writer);
         TextView holy3id = (TextView)findViewById(R.id.holy3id);
 
-        try {
-            allBooks = AndroidSuperApp.BL.GetBooksByParameters("Category",Category.Holy.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        allBooks = AndroidSuperApp.BL.GetBooksByParameters("Category",Category.Holy.toString());
 
         LinearLayout holy1 = (LinearLayout)findViewById(R.id.holy1);
         holy1.setVisibility(View.GONE);
@@ -426,6 +423,12 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             }
+
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(MainActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
 
 

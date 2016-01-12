@@ -203,6 +203,9 @@ public class Stock extends AppCompatActivity {
                             break;
                     }
 
+                    if (db == null)
+                        return rootView;
+
                     final ArrayList<HashMap<String, String>> BookList = new ArrayList<HashMap<String, String>>();
 
                     for (int i = 0; i < db.size(); i++) {

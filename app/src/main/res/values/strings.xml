@@ -127,5 +127,9 @@
     <string name="numOfInvites">מספר הזמנות</string>
     <string name="totalPrice">לתשלום</string>
 
+    <string name="title_activity_load_data">LoadData</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 
 </resources>

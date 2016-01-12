@@ -1,5 +1,7 @@
 package com.backend.model.datasource;
 
+import android.app.Activity;
+
 import com.backend.entities.Admin;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
@@ -93,6 +95,8 @@ public class SqlDS implements Backend
 
     public static ArrayList<DataLoadFromWeb> dataList;
 
+    Activity sourceActivity;
+
     public class DataLoadFromWeb<T>
     {
         public boolean isInLoad;
@@ -111,40 +115,23 @@ public class SqlDS implements Backend
     public SqlDS()
     {
         dataList = new ArrayList<DataLoadFromWeb>();
-        try {
-            dataList.add(new DataLoadFromWeb<Admin>() );
-            dataList.add(new DataLoadFromWeb<Book>() );
-            dataList.add(new DataLoadFromWeb<Cart>() );
-            dataList.add(new DataLoadFromWeb<Customer>() );
-            dataList.add(new DataLoadFromWeb<Recommendation>() );
-            dataList.add(new DataLoadFromWeb<Supplier>() );
-            dataList.add(new DataLoadFromWeb<Supplier_Book>() );
-        }
-        catch (Exception ex)
-        {
-            String asd ="asdasd";
-            String asdasd= asd;
-        }
-
-
-        // get all arrays
-        new AsyncGetDataFromSQL(this).execute("get");
-
-        // chackDownloadState
-        while (dataList.get(0).isInLoad  || dataList.get(1).isInLoad  || dataList.get(2).isInLoad  || dataList.get(3).isInLoad  || dataList.get(4).isInLoad  || dataList.get(5).isInLoad  || dataList.get(6).isInLoad)
-        {
-            try {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException ex)
-            {
-
-            }
-        }
-
-
-        listDS  = new ListDS(this);
+        dataList.add(new DataLoadFromWeb<Admin>() );
+        dataList.add(new DataLoadFromWeb<Book>() );
+        dataList.add(new DataLoadFromWeb<Cart>() );
+        dataList.add(new DataLoadFromWeb<Customer>() );
+        dataList.add(new DataLoadFromWeb<Recommendation>() );
+        dataList.add(new DataLoadFromWeb<Supplier>() );
+        dataList.add(new DataLoadFromWeb<Supplier_Book>() );
+        dataList.add(new DataLoadFromWeb<String>() );
     }
+
+    public Void BuildListBase()
+    {
+        listDS  = new ListDS(this);
+
+        return null;
+    }
+
 
     @Override
     public void AddBook(Book book) throws Exception
@@ -625,7 +612,7 @@ public class SqlDS implements Backend
     }
 
     @Override
-    public ArrayList<Book> GetAllBooks() throws Exception {
+    public ArrayList<Book> GetAllBooks() {
         return listDS.GetAllBooks();
     }
 
@@ -635,7 +622,7 @@ public class SqlDS implements Backend
     }
 
     @Override
-    public ArrayList<Supplier_Book> GetSupplierByBook(String BookID) throws Exception {
+    public ArrayList<Supplier_Book> GetSupplierByBook(String BookID) {
         return listDS.GetSupplierByBook(BookID);
     }
 
@@ -669,6 +656,28 @@ public class SqlDS implements Backend
     @Override
     public Cart DiscountPolicy(Cart cart) throws Exception {
         return listDS.DiscountPolicy(cart);
+    }
+
+    @Override
+    public float GetBookPrice(String SupID,String BookID)
+    {
+        Supplier_Book sb=GetSupplierBook(BookID,SupID);
+        return sb.getPrice();
+    }
+
+    @Override
+    public ArrayList<Cart> GetAllCustomerCarts(String CustomerID)
+    {
+//        ArrayList<Cart> Result = new ArrayList<Cart>();
+//
+//        for (Cart c : listDS.G)
+//        {
+//            if (c.getCustomerID().equals(CustomerID))
+//                Result.add(c);
+//        }
+//
+//        return new ArrayList<Cart>(Result);
+        return null;
     }
 
     private String addMarks(String s)
