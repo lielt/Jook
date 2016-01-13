@@ -17,6 +17,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
+import com.backend.entities.Customer;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
@@ -64,10 +65,15 @@ public class CartActivity extends AppCompatActivity {
             }
             else
             {
+                if (flag.equals("old"))
                 spList = AndroidSuperApp.BL.GetAllCartOrders(preIntent.getStringExtra(KEY_CART_ID));
+                else
+                spList=AndroidSuperApp.BL.GetAllSupplierOrders(AndroidSuperApp.CurrAppUser.getID());
+
                 (findViewById(R.id.highlight)).setVisibility(View.GONE);
                 fab.setVisibility(View.GONE);
             }
+
             orderList = new ArrayList<HashMap<String, String>>();
 
             if (spList.size()>0)
@@ -85,7 +91,11 @@ public class CartActivity extends AppCompatActivity {
                     Book b = AndroidSuperApp.BL.GetBooksByParameters("id",r.getBookId()).get(0);
                     map.put(OrderDataAdapter.KEY_BOOK_NAME,b.getBookName());
                     Supplier s = AndroidSuperApp.BL.GetSupplierByID(r.getSupplierId());
-                    map.put(OrderDataAdapter.KEY_SUPPLIER_NAME, s.getBusinessName());
+
+                    if (flag.equals("supplier"))
+                        map.put(OrderDataAdapter.KEY_SUPPLIER_NAME,AndroidSuperApp.BL.GetUserByCartID(r.getCartId()));
+                    else
+                        map.put(OrderDataAdapter.KEY_SUPPLIER_NAME, s.getBusinessName());
                     map.put(OrderDataAdapter.KEY_AMOUNT, String.valueOf(r.getAmount()));
                     map.put(OrderDataAdapter.KEY_PRICE, String.valueOf(AndroidSuperApp.BL.GetBookPrice(r.getSupplierId(), r.getBookId())));
                     map.put(OrderDataAdapter.KEY_BOOK_ID, String.valueOf(r.getBookId()));

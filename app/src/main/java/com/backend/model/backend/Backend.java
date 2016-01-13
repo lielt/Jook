@@ -71,5 +71,7 @@ public interface Backend
 
     public float GetBookPrice(String SupID,String BookID);
     public ArrayList<Cart> GetAllCustomerCarts(String CustomerID);
+    public ArrayList<Order> GetAllSupplierOrders(String SupplierID);
+    public String GetUserByCartID(String cartID) throws Exception;
 
 }

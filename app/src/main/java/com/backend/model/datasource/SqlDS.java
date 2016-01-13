@@ -680,6 +680,16 @@ public class SqlDS implements Backend
         return null;
     }
 
+    @Override
+    public ArrayList<Order> GetAllSupplierOrders(String SupplierID) {
+        return null;
+    }
+
+    @Override
+    public String GetUserByCartID(String cartID) throws Exception {
+        return null;
+    }
+
     private String addMarks(String s)
     {return "\""+s+"\"";}
     private String addMarkAndPshik(String s)

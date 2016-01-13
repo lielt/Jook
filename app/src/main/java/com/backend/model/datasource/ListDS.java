@@ -951,4 +951,31 @@ public class ListDS implements Backend, Serializable
         return new ArrayList<Cart>(Result);
     }
 
+    public ArrayList<Order> GetAllSupplierOrders(String SupplierID)
+    {
+        ArrayList<Order> Result = new ArrayList<Order>();
+
+        for (Order o : OrderList)
+        {
+            if (o.getSupplierId().equals(SupplierID))
+                Result.add(o);
+        }
+
+        return new ArrayList<Order>(Result);
+    }
+    public String GetUserByCartID(String cartID) throws Exception {
+        String Name;
+        String temp=null;
+        for (Cart c : CartList) {
+            if (c.getID().equals(cartID)) {
+                 temp = c.getCustomerID();
+                break;
+            }
+        }
+        if (temp!=null) {
+            Name = (GetUserByID(temp)).getContactName().GetFullName();
+            return Name;
+        }
+        throw new Exception("cant find customer");
+    }
 }
