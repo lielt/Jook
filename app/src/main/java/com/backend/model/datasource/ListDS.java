@@ -213,6 +213,7 @@ public class ListDS implements Backend, Serializable
 
     @Override
     public void AddCustomer(Customer customer) throws Exception{
+
         if (GetCustomerByID(customer.getID())==null)
              CustomerList.add(customer);
         else

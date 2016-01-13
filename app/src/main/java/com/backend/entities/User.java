@@ -19,7 +19,7 @@ public class User
 
     public User(String ID, String firstName, String lastName, String phone, String cellPhone, String email, String street, String num, String city, String applicationPassword, boolean block) throws Exception
     {
-        this.ID = ID;
+        setID(ID);
         ContactName = new Name(firstName, lastName);
         ContactInfo = new ContactInformation(phone,cellPhone,email,new Address(street,num,city));
         ApplicationPassword = applicationPassword;

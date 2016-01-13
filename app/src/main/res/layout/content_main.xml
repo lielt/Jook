@@ -144,7 +144,7 @@
                                 <TextView style="@style/book_box_writer_name" android:id="@+id/history2writer"/>
                                 <TextView android:id="@+id/history2id" android:layout_width="0dp" android:layout_height="0dp" />
                             </LinearLayout>
-                            <LinearLayout style="@style/book_box_bookItem" android:id="@+id/history3" android:layout_marginLeft="0dp">
+                            <LinearLayout style="@style/book_box_bookItem" android:id="@+id/history3">
                                 <ImageButton style="@style/book_box_bookImg" android:id="@+id/history3img"/>
                                 <TextView style="@style/book_box_book_name" android:id="@+id/history3name"/>
                                 <TextView style="@style/book_box_writer_name" android:id="@+id/history3writer"/>

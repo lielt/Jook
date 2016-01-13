@@ -55,7 +55,9 @@ public class Add_Customer extends AppCompatActivity {
             String payways=(((Spinner)findViewById(R.id.get_customer_payway)).getSelectedItem()).toString();
             PayWay payWay = GetPayWay(payways);
             Customer newCus = new Customer(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false,payWay,RecommendedBy , 0);
+
             AndroidSuperApp.BL.AddCustomer(newCus);
+
             Toast.makeText(this,"לקוח נוסף בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
