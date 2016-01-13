@@ -16,6 +16,7 @@ import com.backend.entities.User;
 import com.backend.enums.Category;
 import com.backend.enums.Level;
 import com.backend.enums.PayWay;
+import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.backend.model.backend.Backend;
 
@@ -61,9 +62,12 @@ public class AndroidSuperApp extends Application {
 
             if (CurrAppUser != null && CurrAppUser.getApplicationPassword().toLowerCase().equals(pass.toLowerCase()))
             {
-                CurrAppCart = new Cart();
-                CurrAppCart.setCustomerID(CurrAppUser.getID());
-                BL.AddCart(CurrAppCart);
+                if (CurrAppUser.getPrivilege().equals(Privilege.Customer))
+                {
+                    CurrAppCart = new Cart();
+                    CurrAppCart.setCustomerID(CurrAppUser.getID());
+                    BL.AddCart(CurrAppCart);
+                }
                 return true;
             }
 
@@ -90,10 +94,13 @@ public class AndroidSuperApp extends Application {
 
     public static Context getContex() { return ctx;}
 
-    private static void insertGuestMode() throws Exception
+    public static void insertGuestMode() throws Exception
     {
+        AndroidSuperApp.CurrAppUser = new User("000000000","guest","guset","030001111","0521231234","test@gmail.com","null","1","null","",false);
+        AndroidSuperApp.CurrAppUser.setPrivilege(Privilege.Guest);
+
         CurrAppCart = new Cart();
-        CurrAppCart.setCustomerID("000000000");
+        CurrAppCart.setCustomerID(CurrAppUser.getID());
         CurrAppCart.setID("");
     }
 
