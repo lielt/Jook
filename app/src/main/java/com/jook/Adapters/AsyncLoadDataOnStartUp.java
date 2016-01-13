@@ -156,7 +156,7 @@ public class AsyncLoadDataOnStartUp extends AsyncTask<Activity,Void,Void> {
                 RecommendationResult.isInLoad = false;
             }
 
-            //GetCustomers
+            //Get Supplier
             SqlDS.DataLoadFromWeb<Supplier> SupplierResult = mySqlDS.dataList.get(5);
             SupplierResult.Result = SqlDS.GET(SqlDS.web_url + "sqlQuery.php?table=Suppliers");
             if (!SupplierResult.Result.equals("0 results"))

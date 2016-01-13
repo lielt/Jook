@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Supplier;
+import com.backend.enums.Privilege;
 import com.backend.enums.Ship;
 import com.jook.Adapters.MailSend.AsyncSendMail;
 
@@ -56,6 +57,9 @@ public class Add_Supplier extends AppCompatActivity {
             Ship ShippingWay = GetShip(ships);
             Supplier newSup = new Supplier(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, BuisnessName, ShippingWay, 0);
             AndroidSuperApp.BL.AddSupplier(newSup);
+
+            newSup.setPrivilege(Privilege.Supplier);
+            AndroidSuperApp.CurrAppUser = newSup;
 
             Toast.makeText(Add_Supplier.this, "ספק נוסף בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));

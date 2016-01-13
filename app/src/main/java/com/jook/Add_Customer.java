@@ -12,6 +12,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Customer;
 import com.backend.enums.PayWay;
+import com.backend.enums.Privilege;
 import com.jook.Adapters.MailSend.AsyncSendMail;
 
 import static com.backend.entities.SystemFunc.GetPayWay;
@@ -57,6 +58,9 @@ public class Add_Customer extends AppCompatActivity {
             Customer newCus = new Customer(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false,payWay,RecommendedBy , 0);
 
             AndroidSuperApp.BL.AddCustomer(newCus);
+
+            newCus.setPrivilege(Privilege.Customer);
+            AndroidSuperApp.CurrAppUser = newCus;
 
             Toast.makeText(this,"לקוח נוסף בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));

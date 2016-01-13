@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
+import com.backend.entities.Supplier_Book;
 import com.backend.enums.Category;
 import com.backend.enums.Privilege;
 import com.jook.DownloadImageFromNetTools.ImageLoaderForBorrunView;
@@ -68,6 +69,14 @@ public class MainActivity extends AppCompatActivity
         //////////////////////////////////////////////////////////////////////////////
 
         try {
+
+            View headerLayout = navigationView.getHeaderView(0);
+            TextView name = (TextView)headerLayout.findViewById(R.id.mainNevName);
+            TextView mail = (TextView)headerLayout.findViewById(R.id.mainNevMail);
+
+            name.setText(AndroidSuperApp.CurrAppUser.getContactName().GetFullName());
+            mail.setText(AndroidSuperApp.CurrAppUser.getContactInfo().getEmail());
+
         if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
         {
             navigationView.getMenu().findItem(R.id.login).setVisible(true);
@@ -75,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         else
         {
             navigationView.getMenu().findItem(R.id.logout).setVisible(true);
+
             switch (AndroidSuperApp.CurrAppUser.getPrivilege())
             {
                 case Customer:
@@ -516,6 +526,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.logout)
         {
             AndroidSuperApp.onLogOut();
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.getMenu().findItem(R.id.Cus).setVisible(false);
+            navigationView.getMenu().findItem(R.id.Sup).setVisible(false);
+            navigationView.getMenu().findItem(R.id.Manager).setVisible(false);
             Toast.makeText(MainActivity.this, "משתמש התנתק בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
@@ -580,9 +594,34 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
-        intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
-        startActivity(intent);
+        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Customer))
+        {
+            Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
+            intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
+            startActivity(intent);
+        }
+        else if(AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier))
+        {
+
+            try {
+
+                Supplier_Book sb;
+                sb = AndroidSuperApp.BL.GetSupplierBook(AndroidSuperApp.CurrAppUser.getID(), BookID);
+                if (sb == null)
+                {
+                    sb = new Supplier_Book(AndroidSuperApp.CurrAppUser.getID(), BookID, 0, 0);
+                    AndroidSuperApp.BL.addBookToSupplier(sb);
+                }
+                Intent intent = new Intent(this, ShowBookForSupplier.class);
+                intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
+                startActivity(intent);
+            }
+            catch (Exception e) {
+                Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+            };
+        }
+
+
     }
 
 }

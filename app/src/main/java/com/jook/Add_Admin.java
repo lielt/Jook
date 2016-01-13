@@ -12,6 +12,7 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Admin;
 import com.backend.enums.Level;
+import com.backend.enums.Privilege;
 import com.jook.Adapters.MailSend.AsyncSendMail;
 
 public class Add_Admin extends AppCompatActivity {
@@ -56,6 +57,10 @@ public class Add_Admin extends AppCompatActivity {
                 newSup = new Admin(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, Level.Editor);
             }
             AndroidSuperApp.BL.AddAdmin(newSup);
+
+            newSup.setPrivilege(Privilege.OnlyAdmin);
+            AndroidSuperApp.CurrAppUser = newSup;
+
             Toast.makeText(this, "מנהל נוסף בהצלחה", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
