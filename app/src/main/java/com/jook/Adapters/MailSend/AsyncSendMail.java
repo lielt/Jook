@@ -14,14 +14,28 @@ public class AsyncSendMail extends AsyncTask<String,Void,String>
         try
         {
             GMailSender sender = new GMailSender("jookmanager1@gmail.com", "12369091");
+            String Body;
+            switch (params[0]) {
+                case "reg":
 
-            String Body = "שלום לך מר: " + params[0] + " " + "נרשמת בהצלחה לאפליקציה jook בתור " + params[1] +
-                            " " + "שים לב ששם המשתמש שלך הוא: " + params[2] + " והסיסמה היא: " + params[3] +
-                           "... דיר באלק שאתה מאבד אותם!!! כי אם אתה חושב שהיה לנו כוח לממש גם שחזר סיסמה אתה חי בסרט";
-            sender.sendMail("נרשמת בהצלחה לאפליקציית jook!!",
-                    Body,
-                    "jookAdmin@gmail.com",
-                    params[2]);
+
+                 Body = "שלום לך מר: " + params[1] + " " + "נרשמת בהצלחה לאפליקציה jook בתור " + params[2] +
+                        " " + "שים לב ששם המשתמש שלך הוא: " + params[3] + " והסיסמה היא: " + params[4] +
+                        "... דיר באלק שאתה מאבד אותם!!! כי אם אתה חושב שהיה לנו כוח לממש גם שחזר סיסמה אתה חי בסרט";
+                sender.sendMail("נרשמת בהצלחה לאפליקציית jook!!",
+                        Body,
+                        "jookAdmin@gmail.com",
+                        params[3]);
+                    break;
+                case "invite":
+                    Body="ביצעת הזמנה באפליקציה jook";
+                    sender.sendMail("הזמנה חדשה",Body,"jookAdmin@gmail.com",params[1]);
+                   break;
+                case "supinv":
+                    Body="בוצעה הזמנה לספר: " +params[1]+" "+ "בכמות:"+params[2]+" "+"על ידי: "+params[3]+" "+
+                            "אנא צור עימו קשר במייל: "+params[4];
+                    sender.sendMail("הזמנה חדשה",Body,"jookAdmin@gmail.com",params[5]);
+            }
         }
         catch (Exception ex)
         {

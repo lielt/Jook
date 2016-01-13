@@ -235,7 +235,7 @@
                 android:visibility="gone"
                 android:layout_below="@id/book_amount">
                 <EditText android:id="@+id/get_book_price"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_weight="3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

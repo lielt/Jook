@@ -20,6 +20,7 @@ import com.backend.entities.Cart;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 import com.jook.Adapters.OrderDataAdapter;
 
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class CartActivity extends AppCompatActivity {
             else
             {
                 spList = AndroidSuperApp.BL.GetAllCartOrders(preIntent.getStringExtra(KEY_CART_ID));
+                (findViewById(R.id.highlight)).setVisibility(View.GONE);
+                fab.setVisibility(View.GONE);
             }
             orderList = new ArrayList<HashMap<String, String>>();
 
@@ -99,10 +102,12 @@ public class CartActivity extends AppCompatActivity {
 
                 listView.setAdapter(adapter);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                if (flag.equals("new"))
+                {
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                         Intent intent = new Intent(getBaseContext(), OrderPage.class);
+                        Intent intent = new Intent(getBaseContext(), OrderPage.class);
                         intent.putExtra(OrderPage.SUP_ID, orderList.get(position).get(OrderDataAdapter.KEY_SUP_ID));
                         intent.putExtra(OrderPage.BOOK_ID, orderList.get(position).get(OrderDataAdapter.KEY_BOOK_ID));
                         intent.putExtra(OrderPage.NEW_UPDATE_FLAG,"update");
@@ -110,7 +115,7 @@ public class CartActivity extends AppCompatActivity {
                         intent.putExtra(OrderPage.Sender,"cart");
                         startActivity(intent);
                     }
-                });
+                });}
             }
             TextView pay=(TextView) findViewById(R.id.payment);
             Cart cart2=AndroidSuperApp.BL.DiscountPolicy(cart);
@@ -130,13 +135,18 @@ public class CartActivity extends AppCompatActivity {
         {
             Supplier_Book sb=AndroidSuperApp.BL.GetSupplierBook(spList.get(i).getBookId(), spList.get(i).getSupplierId());
             try {
-                sb.setAmount(sb.getAmount()-spList.get(i).getAmount());
+                sb.setAmount(sb.getAmount() - spList.get(i).getAmount());
+                Book book=AndroidSuperApp.BL.GetBooksByParameters("id",sb.getBookID()).get(0);
+                Supplier supplier=AndroidSuperApp.BL.GetSupplierByID(sb.getSupplierID());
+                new AsyncSendMail().execute("supinv",book.getBookName(),String.valueOf(spList.get(i).getAmount())
+                        ,AndroidSuperApp.CurrAppUser.getContactName().GetFullName(),AndroidSuperApp.CurrAppUser.getContactInfo().getEmail()
+                        ,supplier.getContactInfo().getEmail());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        //send mail
+        new AsyncSendMail().execute("invite",AndroidSuperApp.CurrAppUser.getContactInfo().getEmail());
         Toast.makeText(CartActivity.this, "ההזמנה בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
 
         AndroidSuperApp.CurrAppCart = new Cart();

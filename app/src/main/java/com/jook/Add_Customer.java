@@ -63,7 +63,7 @@ public class Add_Customer extends AppCompatActivity {
             finish();
             AddUser.AddUserActivity.finish();
 
-            new AsyncSendMail().execute(newCus.getContactName().GetFullName(), "לקוח", newCus.getContactInfo().getEmail(), newCus.getApplicationPassword());
+            new AsyncSendMail().execute("reg",newCus.getContactName().GetFullName(), "לקוח", newCus.getContactInfo().getEmail(), newCus.getApplicationPassword());
 
         }
         catch (Exception ex)
