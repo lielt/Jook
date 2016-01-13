@@ -521,7 +521,7 @@ public class MainActivity extends AppCompatActivity
             CIntent.putExtra(KEY_FLAG, flag);
             startActivity(CIntent);
         } else if (id == R.id.UpdateUserMenu) {
-
+//we didnt do
         }else if (id == R.id.AddAdminMenu) {
             startActivity(new Intent(this,AddUser.class));
         }else if (id == R.id.AccountMenu) {
