@@ -29,7 +29,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    public static final String KEY_FLAG="flag";
     public static final String KEY_FILTER = "BookToShowFilter";
     ArrayList<Integer> ImageButtonIndex = new ArrayList<Integer>();
     ArrayList<String> BookIDIndex = new ArrayList<String>();
@@ -497,13 +497,19 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.AddBookMenu) {
             startActivity(new Intent(this,AddBook.class));
         } else if (id == R.id.SupCartMenu) {
-
+            Intent CIntent= new Intent(this,CartActivity.class);
+            String flag="supplier";
+            CIntent.putExtra(KEY_FLAG, flag);
+            startActivity(CIntent);
         } else if (id == R.id.StockMenu) {
             startActivity(new Intent(this,Stock.class));
         } else if (id == R.id.PreOrdersMenu) {
-
+            startActivity(new Intent(this, OldCarts.class));
         } else if (id == R.id.CartMenu) {
-            startActivity(new Intent(this, CartActivity.class));
+            Intent CIntent= new Intent(this,CartActivity.class);
+            String flag="new";
+            CIntent.putExtra(KEY_FLAG, flag);
+            startActivity(CIntent);
         } else if (id == R.id.UpdateUserMenu) {
 
         }else if (id == R.id.AddAdminMenu) {
