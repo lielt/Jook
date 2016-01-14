@@ -35,6 +35,10 @@ public class AsyncSendMail extends AsyncTask<String,Void,String>
                     Body="בוצעה הזמנה לספר: " +params[1]+" "+ "בכמות:"+params[2]+" "+"על ידי: "+params[3]+" "+
                             "אנא צור עימו קשר במייל: "+params[4];
                     sender.sendMail("הזמנה חדשה",Body,"jookAdmin@gmail.com",params[5]);
+                case "delete":
+                    Body= "הספר: "+params[1]+" "+ "נמחק ממאגר הספרים שלך עקב היותו יקר מדי ממדיניות האפליקציה"
+                            +"/n"+"נשמח שתשנה את המחיר למחיר סביר יותר, צוות האפליקציה jook";
+                    sender.sendMail("מחיקת הזמנה",Body,"jookAdmin@gmail.com",params[2]);
             }
         }
         catch (Exception ex)

@@ -15,6 +15,8 @@ import com.backend.entities.Customer;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
+import com.backend.enums.Privilege;
+import com.jook.Adapters.MailSend.AsyncSendMail;
 import com.jook.DownloadImageFromNetTools.ImageLoader;
 
 public class OrderPage extends AppCompatActivity {
@@ -50,7 +52,8 @@ public class OrderPage extends AppCompatActivity {
             String bookID = myIntent.getStringExtra(BOOK_ID);
             String SupplierID = myIntent.getStringExtra(SUP_ID);
             imageLoader = new ImageLoader(this.getApplicationContext());
-
+            if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin))
+                (findViewById(R.id.deleteSb)).setVisibility(View.VISIBLE);
             myBook = AndroidSuperApp.BL.GetBooksByParameters("id",bookID).get(0);
             mySupplier = AndroidSuperApp.BL.GetSupplierByID(SupplierID);
             mySupplierBook = AndroidSuperApp.BL.GetSupplierBook(bookID, SupplierID);
@@ -166,4 +169,14 @@ public class OrderPage extends AppCompatActivity {
         }
     }
 
+    public void Delete(View view) {
+
+        try {
+            AndroidSuperApp.BL.removeBookFromSupplier(mySupplierBook);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new AsyncSendMail().execute("delete",myBook.getBookName(),mySupplier.getContactInfo().getEmail());
+
+    }
 }

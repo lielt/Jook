@@ -398,6 +398,15 @@
                 android:layout_margin="4dp"
                 android:background="#3861f7"
                 android:onClick="MakeOrder"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/deleteSb"
+                android:text="מחק"
+                android:layout_margin="4dp"
+                android:onClick="Delete"
+                />
         </LinearLayout>
     </ScrollView>
 
