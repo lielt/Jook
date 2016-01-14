@@ -599,13 +599,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Customer))
-        {
-            Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
-            intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
-            startActivity(intent);
-        }
-        else if(AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier))
+
+        if(AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Supplier))
         {
 
             try {
@@ -625,6 +620,13 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
             };
         }
+        else
+        {
+            Intent intent = new Intent(getBaseContext(), ShowBookMain.class);
+            intent.putExtra(ShowBookMain.KEY_BOOK_ID, BookID);
+            startActivity(intent);
+        }
+
 
 
     }

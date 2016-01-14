@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
@@ -150,11 +151,16 @@ public class ShowBookMain extends AppCompatActivity
                                 @Override
                                 public void onItemClick (AdapterView <?> parent, View view,int position,long id)
                                 {
-                                    Intent intent = new Intent(getBaseContext(), OrderPage.class);
-                                    intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
-                                    intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
-                                    intent.putExtra(OrderPage.NEW_UPDATE_FLAG,"new");
-                                    startActivity(intent);
+                                    if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
+                                        Toast.makeText(ShowBookMain.this,getString(R.string.guestError), Toast.LENGTH_SHORT).show();
+                                    else
+                                    {
+                                        Intent intent = new Intent(getBaseContext(), OrderPage.class);
+                                        intent.putExtra(OrderPage.SUP_ID, shopLlist.get(position).get(SupDataAdapter.KEY_SHOP_ID));
+                                        intent.putExtra(OrderPage.BOOK_ID, CurrBook.getID());
+                                        intent.putExtra(OrderPage.NEW_UPDATE_FLAG, "new");
+                                        startActivity(intent);
+                                    }
                                 }
 
                             });
