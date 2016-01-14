@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.AndroidSuperApp;
 import com.R;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
-import com.backend.entities.Customer;
 import com.backend.entities.Order;
 import com.backend.entities.Supplier;
 import com.backend.entities.Supplier_Book;
@@ -146,11 +144,13 @@ public class CartActivity extends AppCompatActivity {
             Supplier_Book sb=AndroidSuperApp.BL.GetSupplierBook(spList.get(i).getBookId(), spList.get(i).getSupplierId());
             try {
                 sb.setAmount(sb.getAmount() - spList.get(i).getAmount());
+                AndroidSuperApp.BL.updateBookOnSupplier(sb);
+
                 Book book=AndroidSuperApp.BL.GetBooksByParameters("id",sb.getBookID()).get(0);
                 Supplier supplier=AndroidSuperApp.BL.GetSupplierByID(sb.getSupplierID());
-                new AsyncSendMail().execute("supinv",book.getBookName(),String.valueOf(spList.get(i).getAmount())
-                        ,AndroidSuperApp.CurrAppUser.getContactName().GetFullName(),AndroidSuperApp.CurrAppUser.getContactInfo().getEmail()
-                        ,supplier.getContactInfo().getEmail());
+                new AsyncSendMail().execute("supinv", book.getBookName(), String.valueOf(spList.get(i).getAmount())
+                        , AndroidSuperApp.CurrAppUser.getContactName().GetFullName(), AndroidSuperApp.CurrAppUser.getContactInfo().getEmail()
+                        , supplier.getContactInfo().getEmail());
             } catch (Exception e) {
                 e.printStackTrace();
             }
