@@ -21,14 +21,14 @@ public class Book
     private Category Category;
     private String URL;
 
-    public Book(String ID, String bookName, Name writer, String publisher, boolean thickCover, int year, com.backend.enums.Category category, String URL)
+    public Book(String ID, String bookName, Name writer, String publisher, boolean thickCover, int year, com.backend.enums.Category category, String URL) throws Exception
     {
-        this.ID = ID;
-        BookName = bookName;
-        Writer = writer;
-        Publisher = publisher;
+        setID(ID);
+        setBookName(bookName);
+        setWriter(writer.getFirstName(),writer.getLastName());
+        setPublisher(publisher);
         ThickCover = thickCover;
-        Year = year;
+        setYear(year);
         Category = category;
         this.URL = URL;
     }
@@ -37,7 +37,10 @@ public class Book
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(String ID) throws Exception{
+        if (ID.equals("") || ID == null)
+            throw new Exception("Book id cennot by empty!!");
+
         this.ID = ID;
     }
 
@@ -45,7 +48,10 @@ public class Book
         return BookName;
     }
 
-    public void setBookName(String bookName) {
+    public void setBookName(String bookName)throws Exception
+    {
+        if (bookName.equals("") || bookName == null)
+            throw new Exception("Book name cennot by empty!!");
         BookName = bookName;
     }
 
@@ -57,13 +63,18 @@ public class Book
 
     public void setWriter(String FName, String LName) throws Exception{
         Writer= new Name(FName,LName);
+        if (Writer.GetFullName().equals("") || Writer == null)
+            throw new Exception("Book Writer cennot by empty!!");
     }
 
     public String getPublisher() {
         return Publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(String publisher)throws Exception
+    {
+        if (publisher.equals("") || publisher == null)
+            throw new Exception("Book publisher cennot by empty!!");
         Publisher = publisher;
     }
 
@@ -81,7 +92,7 @@ public class Book
 
     public void setYear(int year) throws Exception {
         int currYear = Calendar.getInstance().get(Calendar.YEAR);
-        if (year <= currYear && year >= (currYear - 100))
+        if (year <= currYear && year >= (currYear - 200))
             Year = year;
         else
             throw new Exception(getContex().getString(R.string.BookYearRangeErr));

@@ -47,7 +47,8 @@
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toLeftOf="@+id/thumbnail"
-        android:text="אברהם יצחק הכהן קוק" />
+        android:text="אברהם יצחק הכהן קוק"
+        android:gravity="right"/>
 
 	<!-- Year -->
     <TextView

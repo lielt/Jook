@@ -73,10 +73,9 @@ public class AddBook extends AppCompatActivity {
                 }
                 Supplier_Book sb=new Supplier_Book(AndroidSuperApp.CurrAppUser.getID(),newbook.getID(),amount,price);
                 AndroidSuperApp.BL.addBookToSupplier(sb);
-                Toast.makeText(AddBook.this, "ספר נוסף בהצלחה", Toast.LENGTH_SHORT).show();
-                finish();
-
             }
+            Toast.makeText(AddBook.this, "ספר נוסף בהצלחה", Toast.LENGTH_SHORT).show();
+            finish();
 
         }
         catch (Exception ex)

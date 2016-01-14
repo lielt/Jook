@@ -3,7 +3,6 @@ package com.jook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +13,9 @@ import android.widget.Toast;
 
 import com.AndroidSuperApp;
 import com.R;
-import com.backend.entities.*;
+import com.backend.entities.Book;
+import com.backend.entities.User;
+import com.backend.enums.Privilege;
 import com.jook.Adapters.RecDataAdapter;
 import com.jook.DownloadImageFromNetTools.ImageLoader;
 
@@ -45,6 +46,8 @@ public class Show_Recommends_For_Book extends AppCompatActivity {
             }
         });
 
+        if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Guest))
+            fab.setVisibility(View.INVISIBLE);
         try
         {
             Intent intent = getIntent();
