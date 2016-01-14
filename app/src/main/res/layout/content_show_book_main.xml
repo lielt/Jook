@@ -80,7 +80,20 @@
         android:layout_alignEnd="@+id/BookThumbnail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:visibility="visible"
         android:onClick="showRecForBook"/>
+
+    <Button
+        android:layout_below="@+id/BookThumbnail"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/BookThumbnail"
+        android:layout_alignEnd="@+id/BookThumbnail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/deleteB"
+        android:onClick="DeleteBook"/>
 
     <TextView
         android:layout_width="wrap_content"
