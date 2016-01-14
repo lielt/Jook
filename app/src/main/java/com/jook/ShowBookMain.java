@@ -68,6 +68,10 @@ public class ShowBookMain extends AppCompatActivity
         else
         {
             fab.setVisibility(View.INVISIBLE);
+            if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.OnlyAdmin)) {
+                (findViewById(R.id.deleteB)).setVisibility(View.VISIBLE);
+                (findViewById(R.id.rec_for_book_button)).setVisibility(View.GONE);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -238,5 +242,17 @@ public class ShowBookMain extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void DeleteBook(View view) {
+        try {
+            AndroidSuperApp.BL.DeleteBook(CurrBook);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(ShowBookMain.this,"הספר נמחק בהצלחה", Toast.LENGTH_SHORT).show();
+
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -33,16 +33,16 @@ public class Add_Admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__admin);
-        MyIntent=getIntent();
-         ID =MyIntent.getStringExtra(ConstValue.ID);
-         PrivateNames=MyIntent.getStringExtra(ConstValue.PrivateName);
-         FamilyNames=MyIntent.getStringExtra(ConstValue.FamilyName);
-         City=MyIntent.getStringExtra(ConstValue.City);
-         Street=MyIntent.getStringExtra(ConstValue.Street);
-         Building=MyIntent.getStringExtra(ConstValue.Building);
-         Email=MyIntent.getStringExtra(ConstValue.Email);
-         Phone=MyIntent.getStringExtra(ConstValue.Phone);
-         CellPhone=MyIntent.getStringExtra(ConstValue.CellPhone);
+        MyIntent = getIntent();
+        ID = MyIntent.getStringExtra(ConstValue.ID);
+        PrivateNames = MyIntent.getStringExtra(ConstValue.PrivateName);
+        FamilyNames = MyIntent.getStringExtra(ConstValue.FamilyName);
+        City = MyIntent.getStringExtra(ConstValue.City);
+        Street = MyIntent.getStringExtra(ConstValue.Street);
+        Building = MyIntent.getStringExtra(ConstValue.Building);
+        Email = MyIntent.getStringExtra(ConstValue.Email);
+        Phone = MyIntent.getStringExtra(ConstValue.Phone);
+        CellPhone = MyIntent.getStringExtra(ConstValue.CellPhone);
     }
 
     public void CreateAdmin(View view) {
@@ -51,9 +51,7 @@ public class Add_Admin extends AppCompatActivity {
             Admin newSup;
             if (((Switch) findViewById(R.id.get_permission)).isChecked()) {
                 newSup = new Admin(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, Level.Administrator);
-            }
-            else
-            {
+            } else {
                 newSup = new Admin(ID, PrivateNames, FamilyNames, Phone, CellPhone, Email, Street, Building, City, Password, false, Level.Editor);
             }
             AndroidSuperApp.BL.AddAdmin(newSup);
@@ -66,14 +64,13 @@ public class Add_Admin extends AppCompatActivity {
             finish();
             AddUser.AddUserActivity.finish();
 
-            new AsyncSendMail().execute(newSup.getContactName().GetFullName(),"מנהל",newSup.getContactInfo().getEmail(),newSup.getApplicationPassword());
+            new AsyncSendMail().execute(newSup.getContactName().GetFullName(), "מנהל", newSup.getContactInfo().getEmail(), newSup.getApplicationPassword());
 
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
             finish();
-        };
+        }
+        ;
     }
 
 }
