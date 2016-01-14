@@ -61,7 +61,7 @@ public class OrderPage extends AppCompatActivity {
             Intent mIntent = getIntent();
             String flag = mIntent.getStringExtra(NEW_UPDATE_FLAG);
             if (flag.equals("new"))
-                myOrder = new Order("",AndroidSuperApp.CurrAppCart.getID(),SupplierID,bookID,1);
+                myOrder = new Order(AndroidSuperApp.CurrAppCart.getID(),AndroidSuperApp.CurrAppCart.getID(),SupplierID,bookID,1);
             else
             {
                 myOrder = AndroidSuperApp.BL.GetOrderByID(mIntent.getStringExtra(ORDER_ID));
@@ -89,7 +89,10 @@ public class OrderPage extends AppCompatActivity {
             SupName.setText(mySupplier.getBusinessName());
             SupID.setText(mySupplier.getID());
             SupShip.setText(mySupplier.getShippingMethodAsString());
-            SupPay.setText(((Customer)AndroidSuperApp.CurrAppUser).getPayMethodAsString());
+            if (AndroidSuperApp.CurrAppUser.getPrivilege().equals(Privilege.Customer))
+                SupPay.setText(((Customer)AndroidSuperApp.CurrAppUser).getPayMethodAsString());
+            else
+                SupPay.setText("זמין רק עבור לקוח");
             SupAdrr.setText(mySupplier.getContactInfo().getAddress().getFullAddressAsString());
 
             BookTitle.setText(myBook.getBookName());
@@ -150,12 +153,16 @@ public class OrderPage extends AppCompatActivity {
                 AndroidSuperApp.BL.UpdateOrder(myOrder);
             }
 
+            AndroidSuperApp.BL.UpdateCart(AndroidSuperApp.CurrAppCart);
+
             String flag1="new";
             Intent intent=new Intent(this, CartActivity.class);
             intent.putExtra(CartActivity.KEY_FLAG, flag1);
+
             Toast.makeText(OrderPage.this, "הזמנה נוספה בהצלחה", Toast.LENGTH_LONG).show();
             startActivity(intent);
             finish();
+
             if (getIntent().getStringExtra(Sender).equals("cart"))
                 CartActivity.cartAct.finish();
             else
@@ -173,6 +180,8 @@ public class OrderPage extends AppCompatActivity {
 
         try {
             AndroidSuperApp.BL.removeBookFromSupplier(mySupplierBook);
+            Toast.makeText(OrderPage.this, "הספר נמחק מהספק בהצלחה", Toast.LENGTH_LONG).show();
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }

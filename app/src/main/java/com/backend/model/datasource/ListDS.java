@@ -476,7 +476,7 @@ public class ListDS implements Backend, Serializable
 
     }
 
-    private Cart GetCartByID(String CartID)
+    public Cart GetCartByID(String CartID)
     {
         for (Cart c : CartList)
         {

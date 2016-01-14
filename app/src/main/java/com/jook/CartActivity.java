@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,19 +29,20 @@ import java.util.HashMap;
 public class CartActivity extends AppCompatActivity {
 
     public static Activity cartAct;
-
     public static final String KEY_CART_ID="cid";
     public static final String KEY_FLAG="flag";
-
     Intent preIntent;
     String flag;
     ArrayList<HashMap<String, String>> orderList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        preIntent=getIntent();
-        flag=preIntent.getStringExtra(KEY_FLAG);
+        preIntent = getIntent();
+        flag = preIntent.getStringExtra(KEY_FLAG);
         cartAct = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,19 +56,28 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
         try
         {
-            Cart cart=AndroidSuperApp.CurrAppCart;
+
             ArrayList<Order> spList;
-            if (flag.equals("new")) {
-                 spList = AndroidSuperApp.BL.GetAllCartOrders(cart.getID());
+            if (flag.equals("new"))
+            {
+                 spList = AndroidSuperApp.BL.GetAllCartOrders(AndroidSuperApp.CurrAppCart.getID());
             }
             else
             {
                 if (flag.equals("old"))
-                spList = AndroidSuperApp.BL.GetAllCartOrders(preIntent.getStringExtra(KEY_CART_ID));
+                    spList = AndroidSuperApp.BL.GetAllCartOrders(preIntent.getStringExtra(KEY_CART_ID));
                 else
-                spList=AndroidSuperApp.BL.GetAllSupplierOrders(AndroidSuperApp.CurrAppUser.getID());
+                    spList=AndroidSuperApp.BL.GetAllSupplierOrders(AndroidSuperApp.CurrAppUser.getID());
+
+                if (spList == null)
+                {
+                    LinearLayout linearLayout = (LinearLayout)findViewById(R.id.highlight);
+                    linearLayout.setVisibility(View.INVISIBLE);
+                    return;
+                }
 
                 (findViewById(R.id.highlight)).setVisibility(View.GONE);
                 fab.setVisibility(View.GONE);
@@ -94,6 +105,7 @@ public class CartActivity extends AppCompatActivity {
                         map.put(OrderDataAdapter.KEY_SUPPLIER_NAME,AndroidSuperApp.BL.GetUserByCartID(r.getCartId()));
                     else
                         map.put(OrderDataAdapter.KEY_SUPPLIER_NAME, s.getBusinessName());
+
                     map.put(OrderDataAdapter.KEY_AMOUNT, String.valueOf(r.getAmount()));
                     map.put(OrderDataAdapter.KEY_PRICE, String.valueOf(AndroidSuperApp.BL.GetBookPrice(r.getSupplierId(), r.getBookId())));
                     map.put(OrderDataAdapter.KEY_BOOK_ID, String.valueOf(r.getBookId()));
@@ -126,8 +138,7 @@ public class CartActivity extends AppCompatActivity {
                 });}
             }
             TextView pay=(TextView) findViewById(R.id.payment);
-            Cart cart2=AndroidSuperApp.BL.DiscountPolicy(cart);
-            pay.setText(String.valueOf(cart2.getTotalPrice()));
+            pay.setText(String.valueOf(AndroidSuperApp.CurrAppCart.getTotalPrice()));
 
 
         }
@@ -152,7 +163,7 @@ public class CartActivity extends AppCompatActivity {
                         , AndroidSuperApp.CurrAppUser.getContactName().GetFullName(), AndroidSuperApp.CurrAppUser.getContactInfo().getEmail()
                         , supplier.getContactInfo().getEmail());
             } catch (Exception e) {
-                e.printStackTrace();
+                //Toast.makeText(CartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -165,7 +176,7 @@ public class CartActivity extends AppCompatActivity {
             AndroidSuperApp.CurrAppCart.setCustomerID(AndroidSuperApp.CurrAppUser.getID());
             AndroidSuperApp.BL.AddCart(AndroidSuperApp.CurrAppCart);
         } catch (Exception e) {
-            e.printStackTrace();
+            //Toast.makeText(CartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         startActivity(new Intent(this, MainActivity.class));
         finish();

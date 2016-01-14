@@ -606,7 +606,7 @@ public class MainActivity extends AppCompatActivity
             try {
 
                 Supplier_Book sb;
-                sb = AndroidSuperApp.BL.GetSupplierBook(AndroidSuperApp.CurrAppUser.getID(), BookID);
+                sb = AndroidSuperApp.BL.GetSupplierBook(BookID,AndroidSuperApp.CurrAppUser.getID());
                 if (sb == null)
                 {
                     sb = new Supplier_Book(AndroidSuperApp.CurrAppUser.getID(), BookID, 0, 0);

@@ -2,6 +2,7 @@ package com.backend.model.datasource;
 
 import android.app.Activity;
 
+import com.AndroidSuperApp;
 import com.backend.entities.Admin;
 import com.backend.entities.Book;
 import com.backend.entities.Cart;
@@ -845,6 +846,7 @@ public class SqlDS implements Backend
         try
         {
             listDS.UpdateCart(cart);
+            AndroidSuperApp.CurrAppCart = cart = listDS.GetCartByID(cart.getID());
             String commend ="UPDATE `Carts` SET `TotalPrice`=" + cart.getTotalPrice() +",`DiscountPrecent`=" + cart.getDiscountPrecent()+
                             ",`NumOfOrders`=" + cart.getNumOfOrders() + ",`OriginalPrice`=" + cart.getOriginalPrice()+
                             " WHERE `id`=" + cart.getID();
