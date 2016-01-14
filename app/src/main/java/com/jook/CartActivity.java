@@ -156,11 +156,12 @@ public class CartActivity extends AppCompatActivity {
             }
         }
 
-        new AsyncSendMail().execute("invite",AndroidSuperApp.CurrAppUser.getContactInfo().getEmail());
+        new AsyncSendMail().execute("invite", AndroidSuperApp.CurrAppUser.getContactInfo().getEmail());
         Toast.makeText(CartActivity.this, "ההזמנה בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
 
-        AndroidSuperApp.CurrAppCart = new Cart();
         try {
+            AndroidSuperApp.BL.AddCart(AndroidSuperApp.CurrAppCart);
+            AndroidSuperApp.CurrAppCart = new Cart();
             AndroidSuperApp.CurrAppCart.setCustomerID(AndroidSuperApp.CurrAppUser.getID());
             AndroidSuperApp.BL.AddCart(AndroidSuperApp.CurrAppCart);
         } catch (Exception e) {
